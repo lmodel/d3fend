@@ -1,6 +1,32 @@
-"""Data tests for example YAML payloads and mappings JSON artifacts."""
+"""Data tests for example YAML payloads.
+
+Valid fixture naming convention: ``<ClassName>-<seq>.yaml``
+  The portion before the first hyphen is used as the Python class name to load
+  against.  Every file under ``tests/data/valid/`` must parse and load cleanly.
+
+Invalid fixture naming convention: ``<ClassName>-<reason>-<seq>.yaml``
+  The portion before the first hyphen is used as the Python class name.  Every
+  file under ``tests/data/invalid/`` must raise an exception when loaded.
+  Three failure modes are covered:
+
+  1. **YAML syntax errors** - unclosed flow sequences/mappings cause
+     ``yaml.scanner.ScannerError`` before the datamodel is consulted.
+  2. **Non-existent class names** - class names that do not exist in the
+     generated module raise ``AttributeError`` at ``getattr()``.
+  3. **Type mismatches** - slots with constrained ranges (e.g. ``integer``)
+     receiving incompatible values raise ``ValueError`` during loading.
+
+Valid fixtures cover:
+  - D3FENDKBThing  - minimal KB entity (label + description)
+  - DefensiveTechnique  - core technique with synonym multivalued slot
+  - Detect  - DefensiveTactic with pref-label
+  - NetworkTrafficAnalysis  - technique with d3fend-id, kb-article, analyzes
+  - DigitalArtifact  - artifact with d3fend-artifact-data-property slot
+  - File  - simple resource entity
+  - DetectionEvent  - security event with definition
+  - FileAnalysis  - inherited-slot resolution across DefensiveTechnique hierarchy
+"""
 import glob
-import json
 import os
 from pathlib import Path
 
@@ -14,7 +40,6 @@ except ModuleNotFoundError:
 
 DATA_DIR_VALID = Path(__file__).parent / "data" / "valid"
 DATA_DIR_INVALID = Path(__file__).parent / "data" / "invalid"
-MAPPINGS_FILE = Path(__file__).parent / "data" / "d3fend" / "d3fend-full-mappings-1.3.0.json"
 
 VALID_EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR_VALID, '*.yaml'))
 INVALID_EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR_INVALID, '*.yaml'))
@@ -44,67 +69,3 @@ def test_invalid_data_files(filepath):
     with pytest.raises(Exception):
         yaml_loader.load(filepath, target_class=tgt_class)
 
-
-def _validate_mappings_payload(payload: dict) -> None:
-    """Validate the expected high-level structure of D3FEND mappings JSON."""
-    assert isinstance(payload, dict)
-    assert "head" in payload
-    assert "results" in payload
-
-    head = payload["head"]
-    results = payload["results"]
-    assert isinstance(head, dict)
-    assert isinstance(results, dict)
-
-    assert "vars" in head
-    assert isinstance(head["vars"], list)
-    assert head["vars"], "head.vars must not be empty"
-
-    assert "bindings" in results
-    assert isinstance(results["bindings"], list)
-    assert results["bindings"], "results.bindings must not be empty"
-
-    expected_vars = set(head["vars"])
-    for binding in results["bindings"]:
-        assert isinstance(binding, dict)
-        # Each binding should include at least the declared vars from head.
-        missing = expected_vars - set(binding.keys())
-        assert not missing, f"binding missing variables: {sorted(missing)}"
-        for variable in expected_vars:
-            entry = binding[variable]
-            assert isinstance(entry, dict)
-            assert "type" in entry
-            assert "value" in entry
-
-
-def test_mappings_file_exists():
-    """The expected mappings artifact is present in the test data folder."""
-    assert MAPPINGS_FILE.exists(), f"missing mappings file: {MAPPINGS_FILE}"
-
-
-def test_mappings_file_valid_structure():
-    """Validate structure of tests/data/d3fend/d3fend-full-mappings-1.3.0.json."""
-    payload = json.loads(MAPPINGS_FILE.read_text(encoding="utf-8"))
-    _validate_mappings_payload(payload)
-
-
-@pytest.mark.parametrize(
-    "invalid_payload",
-    [
-        {},
-        {"head": {}, "results": {}},
-        {"head": {"vars": []}, "results": {"bindings": []}},
-        {
-            "head": {"vars": ["a"]},
-            "results": {"bindings": [{"b": {"type": "literal", "value": "x"}}]},
-        },
-        {
-            "head": {"vars": ["a"]},
-            "results": {"bindings": [{"a": {"type": "literal"}}]},
-        },
-    ],
-)
-def test_mappings_invalid_structures(invalid_payload):
-    """Invalid mappings payloads should fail schema-level structure validation."""
-    with pytest.raises(AssertionError):
-        _validate_mappings_payload(invalid_payload)

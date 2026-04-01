@@ -1,0 +1,5 @@
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+
+# INVALID: missing terminating period causes Turtle parse failure
+d3f:bad-instance-001 a d3f:FileAnalysis ;
+    d3f:label "Malformed Turtle"

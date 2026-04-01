@@ -1,0 +1,22 @@
+---
+# Network Traffic Analysis technique (D3-NTA) with kb-article and relationship slots
+label: "Network Traffic Analysis"
+title: "Network Traffic Analysis"
+d3fend-id: "D3-NTA"
+description: >-
+  Analyzing intercepted or summarized computer network traffic to detect
+  unauthorized activity.
+kb-article: |
+  ## How it works
+
+  Network traffic is captured and analyzed for statistical anomalies, known
+  malicious signatures, or unusual communication patterns. Detection coverage
+  includes protocol-level deviations, unexpected destinations, and volume
+  spikes that may indicate exfiltration or lateral movement.
+analyzes:
+  - "NetworkTraffic"
+  - "PacketData"
+  - "NetworkFlow"
+synonym:
+  - "Network Packet Analysis"
+  - "Traffic Inspection"

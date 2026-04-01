@@ -1,0 +1,9 @@
+---
+# A core D3FEND defensive technique entry
+label: "Example Defensive Technique"
+title: "Example Defensive Technique"
+description: "A countermeasure technique that makes computer systems more difficult to attack."
+definition: "A method applied to harden a target system against known adversarial techniques."
+synonym:
+  - "Security Control"
+  - "Countermeasure"

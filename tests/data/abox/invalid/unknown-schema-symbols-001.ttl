@@ -1,0 +1,5 @@
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+
+# Intentionally references symbols not present in generated LinkML schema.
+d3f:example-bad-instance-001 a d3f:NotARealD3FClass ;
+    d3f:not-a-real-slot d3f:example-target-001 .

@@ -7,7 +7,9 @@ Usage:
     Output: src/d3fend/schema/d3fend.yaml
 """
 
+import json
 import re
+from pathlib import Path
 from collections import defaultdict
 from rdflib import Graph, Namespace, RDF, RDFS, OWL, URIRef, Literal, BNode
 from rdflib.collection import Collection
@@ -32,6 +34,15 @@ def safe_name(name: str) -> str:
     """Make a name safe for use as a LinkML identifier.
     Replaces `.` with `_`; keeps hyphens and alphanumerics."""
     return name.replace(".", "_")
+
+
+def safe_slot_name(name: str) -> str:
+    """Return a LinkML-safe slot name, avoiding collisions with built-in types."""
+    normalized = safe_name(name)
+    # Avoid overlap with linkml built-in type `date`.
+    if normalized == "date":
+        return "date_value"
+    return normalized
 
 
 def indent(text: str, spaces: int = 2) -> str:
@@ -95,10 +106,250 @@ def xsd_to_linkml(xsd_uri: str) -> str:
 
 # ── load graph ───────────────────────────────────────────────────────────────
 
-print("Parsing d3fend.ttl …")
+SOURCE_TTLS = [
+    Path("src/d3fend/schema/d3fend.ttl"),
+    Path("src/d3fend/schema/d3fend-protege.ttl"),
+]
+
 g = Graph()
-g.parse("src/d3fend/schema/d3fend.ttl", format="turtle")
-print(f"  {len(g)} triples loaded")
+for ttl_path in SOURCE_TTLS:
+    print(f"Parsing {ttl_path.name} …")
+    g.parse(ttl_path, format="turtle")
+print(f"  {len(g)} merged triples loaded")
+
+# ── load attack/defensive mappings artifact (optional) ───────────────────────
+# This file contains D3FEND defensive-to-offensive mapping rows used to
+# populate LinkML mapping fields (related/close/broad).
+MAPPINGS_JSON_PATH = Path("src/d3fend/mappings/d3fend-full-mappings-1.3.0.json")
+def_tech_to_attack_ids: dict[str, set[str]] = defaultdict(set)
+def_tech_to_broad_parents: dict[str, set[str]] = defaultdict(set)
+def_tech_to_close_attack_ids: dict[str, set[str]] = defaultdict(set)
+
+# ── static UCO (Unified Cyber Ontology) class mappings ───────────────────────
+# Maps D3FEND class local names to LinkML mapping field entries under the
+# ``unified_cyber_ontology`` prefix (https://lmodel.github.io/uco-master/).
+# Sources: uco-core, uco-observable, uco-action, uco-identity, uco-tool.
+UCO_CLASS_MAPPINGS: dict[str, dict[str, list[str]]] = {
+    # ── exact matches: same name and same concept in both ontologies ──────────
+    **{
+        name: {"exact_mappings": [f"unified_cyber_ontology:{name}"]}
+        for name in [
+            "Action",
+            "Application",
+            "ArchiveFile",
+            "Credential",
+            "Dependency",
+            "DigitalCamera",
+            "Directory",
+            "DNSRecord",
+            "DomainName",
+            "EventLog",
+            "File",
+            "FileSystem",
+            "Grouping",
+            "Hostname",
+            "IPAddress",
+            "MACAddress",
+            "MobilePhone",
+            "NamedPipe",
+            "NetworkFlow",
+            "OperatingSystem",
+            "Organization",
+            "Person",
+            "Pipe",
+            "Process",
+            "Server",
+            "Software",
+            "SymbolicLink",
+            "Thread",
+            "URL",
+            "UserAccount",
+            "Volume",
+            "WindowsRegistryKey",
+            "WindowsRegistryValue",
+        ]
+    },
+    # ── close mappings: very similar concept, slight semantic or naming delta ──
+    # UCO Item = a physical or digital thing stored or managed (broad artifact)
+    "DigitalArtifact": {"close_mappings": ["unified_cyber_ontology:Item"]},
+    # UCO Identity = an abstract representation of an identity (person/org/etc.)
+    "DigitalIdentity": {"close_mappings": ["unified_cyber_ontology:Identity"]},
+    # UCO DefensiveTool = a tool used defensively; D3FEND aligns at technique level
+    "DefensiveTechnique": {"close_mappings": ["unified_cyber_ontology:DefensiveTool"]},
+    # UCO ActionPattern = a pattern of actions; D3FEND tactic is a plan/goal
+    "DefensiveTactic": {"close_mappings": ["unified_cyber_ontology:ActionPattern"]},
+    # UCO Action covers any observable action; D3FEND DigitalEvent is an occurrence
+    "DigitalEvent": {"close_mappings": ["unified_cyber_ontology:Action"]},
+    # UCO SecurityEvent ↔ D3FEND SecurityEvent (close naming, same domain)
+    "SecurityEvent": {"close_mappings": ["unified_cyber_ontology:Action"]},
+    # UCO Document ↔ D3FEND DigitalDocument
+    "DigitalDocument": {"close_mappings": ["unified_cyber_ontology:File"]},
+    # UCO UserSession ↔ D3FEND Session
+    "Session": {"close_mappings": ["unified_cyber_ontology:UserSession"]},
+    # UCO Credential is broader; EncryptedCredential is a specialised form
+    "EncryptedCredential": {"close_mappings": ["unified_cyber_ontology:Credential"]},
+    # UCO EmailMessage ↔ D3FEND Email
+    "Email": {"close_mappings": ["unified_cyber_ontology:EmailMessage"]},
+    # UCO X509Certificate ↔ D3FEND Certificate
+    "Certificate": {"close_mappings": ["unified_cyber_ontology:X509Certificate"]},
+    # UCO X509Certificate ↔ D3FEND CertificateFile (file form of same concept)
+    "CertificateFile": {"close_mappings": ["unified_cyber_ontology:X509Certificate"]},
+    # UCO Software ↔ D3FEND SoftwarePackage (a packaged software artifact)
+    "SoftwarePackage": {"close_mappings": ["unified_cyber_ontology:Software"]},
+    # UCO Image ↔ D3FEND ImageFile (a file containing an image)
+    "ImageFile": {"close_mappings": ["unified_cyber_ontology:Image"]},
+    # UCO Image ↔ D3FEND DiskImage (a disk image artifact)
+    "DiskImage": {"close_mappings": ["unified_cyber_ontology:Image"]},
+    # ── related mappings: conceptually related, different hierarchy position ──
+    # Attacker is a specific kind of Identity actor
+    "Attacker": {"related_mappings": ["unified_cyber_ontology:Identity"]},
+    # D3FENDKBThing is the D3FEND top-level KB class; UcoObject is the UCO root
+    "D3FENDKBThing": {"related_mappings": ["unified_cyber_ontology:UcoObject"]},
+    # Artifact as the physical-or-digital root maps to UCO Item
+    "Artifact": {"related_mappings": ["unified_cyber_ontology:Item"]},
+    # ── broad mappings: the UCO class is more general than the D3FEND class ───
+    # UCO Action is broader than D3FEND's specific CyberAction / DefensiveAction
+    "CyberAction":     {"broad_mappings": ["unified_cyber_ontology:Action"]},
+    "DefensiveAction": {"broad_mappings": ["unified_cyber_ontology:Action"]},
+    # UCO Event-related: DigitalEvent and FileEvent and NetworkEvent fall under Action
+    "FileEvent":    {"broad_mappings": ["unified_cyber_ontology:Action"]},
+    "NetworkEvent": {"broad_mappings": ["unified_cyber_ontology:Action"]},
+    # UCO UcoThing is the top of the UCO hierarchy; D3FENDCore is a D3FEND subroot
+    "D3FENDCore": {"broad_mappings": ["unified_cyber_ontology:UcoThing"]},
+    # UCO Device is broader than HardwareDevice (UCO Device includes peripherals etc.)
+    "HardwareDevice": {"broad_mappings": ["unified_cyber_ontology:Device"]},
+    # UCO Process is broader than UserProcess (UCO covers all process types)
+    "UserProcess": {"broad_mappings": ["unified_cyber_ontology:Process"]},
+    # UCO Memory covers the full memory class; MemoryBlock is a sub-region
+    "MemoryBlock": {"broad_mappings": ["unified_cyber_ontology:Memory"]},
+}
+
+# ── static STIX class mappings ───────────────────────────────────────────────
+# Prefix target: https://lmodel.github.io/stix/
+STIX_CLASS_MAPPINGS: dict[str, dict[str, list[str]]] = {
+    # Exact class-name matches between D3FEND and STIX schema.
+    **{
+        name: {"exact_mappings": [f"stix:{name}"]}
+        for name in [
+            "Artifact",
+            "Directory",
+            "DomainName",
+            "File",
+            "Grouping",
+            "Identifier",
+            "NetworkTraffic",
+            "Process",
+            "Software",
+            "UserAccount",
+            "Vulnerability",
+            "WindowsRegistryKey",
+            "WindowsRegistryValue",
+        ]
+    },
+    # Close semantic matches.
+    "Attacker": {"close_mappings": ["stix:ThreatActor"]},
+    "DigitalIdentity": {"close_mappings": ["stix:Identity"]},
+    "Email": {"close_mappings": ["stix:EmailMessage"]},
+    "IPAddress": {"close_mappings": ["stix:Ipv4Addr"]},
+    "MACAddress": {"close_mappings": ["stix:MacAddr"]},
+    "URL": {"close_mappings": ["stix:Url"]},
+    "Certificate": {"close_mappings": ["stix:X509Certificate"]},
+    "CertificateFile": {"close_mappings": ["stix:X509Certificate"]},
+    "NetworkFlow": {"close_mappings": ["stix:NetworkTraffic"]},
+    "UserProcess": {"close_mappings": ["stix:Process"]},
+    # Related but not equivalent.
+    "DefensiveTechnique": {"related_mappings": ["stix:CourseOfAction"]},
+    "SecurityEvent": {"related_mappings": ["stix:ObservedData"]},
+    # Broader STIX abstractions.
+    "D3FENDKBThing": {"broad_mappings": ["stix:StixEntity"]},
+    "CyberAction": {"broad_mappings": ["stix:StixDomainObject"]},
+}
+
+# ── static SPDX class mappings ───────────────────────────────────────────────
+# Prefix target: https://lmodel.github.io/spdx/
+SPDX_CLASS_MAPPINGS: dict[str, dict[str, list[str]]] = {
+    # Exact class-name matches between D3FEND and SPDX schema.
+    **{
+        name: {"exact_mappings": [f"spdx:{name}"]}
+        for name in [
+            "Agent",
+            "Artifact",
+            "File",
+            "Organization",
+            "Person",
+            "Vulnerability",
+        ]
+    },
+    # Close semantic matches.
+    "SoftwarePackage": {"close_mappings": ["spdx:Package"]},
+    "DigitalDocument": {"close_mappings": ["spdx:SpdxDocument"]},
+    "Software": {"close_mappings": ["spdx:SoftwareArtifact"]},
+    # Related mappings to SPDX's generic core abstraction.
+    "DefensiveTechnique": {"related_mappings": ["spdx:Element"]},
+    "D3FENDKBThing": {"related_mappings": ["spdx:Element"]},
+    # Broad mapping from specific D3FEND artifact classes into SPDX Element.
+    "Artifact": {"broad_mappings": ["spdx:Element"]},
+}
+
+# ── static OSCAL class mappings ──────────────────────────────────────────────
+# Prefix target: https://lmodel.github.io/oscal/
+OSCAL_CLASS_MAPPINGS: dict[str, dict[str, list[str]]] = {
+    # Exact class-name matches between D3FEND and OSCAL schemas.
+    **{
+        name: {"exact_mappings": [f"oscal:{name}"]}
+        for name in [
+            "Action",
+            "Capability",
+            "Group",
+            "Link",
+            "Metadata",
+            "Resource",
+            "Step",
+        ]
+    },
+    # Close semantic matches.
+    "DigitalDocument": {"close_mappings": ["oscal:OscalDocument"]},
+    "File": {"close_mappings": ["oscal:Resource"]},
+    "Organization": {"close_mappings": ["oscal:Party"]},
+    "Person": {"close_mappings": ["oscal:Party"]},
+    # Related mappings for defensive/control-oriented concepts.
+    "DefensiveTechnique": {"related_mappings": ["oscal:Control"]},
+    "DefensiveAction": {"related_mappings": ["oscal:ImplementedControlStatement"]},
+    # Broader OSCAL abstractions.
+    "CyberAction": {"broad_mappings": ["oscal:Action"]},
+    "DigitalArtifact": {"broad_mappings": ["oscal:Resource"]},
+}
+
+if MAPPINGS_JSON_PATH.exists():
+    try:
+        mappings_payload = json.loads(MAPPINGS_JSON_PATH.read_text(encoding="utf-8"))
+        for row in mappings_payload.get("results", {}).get("bindings", []):
+            if not row:
+                continue
+            def_tech_uri = row.get("def_tech", {}).get("value")
+            if not def_tech_uri or "#" not in def_tech_uri:
+                continue
+            def_local = def_tech_uri.split("#")[-1]
+
+            off_tech_id = row.get("off_tech_id", {}).get("value")
+            if off_tech_id:
+                def_tech_to_attack_ids[def_local].add(off_tech_id)
+
+            # broader ATT&CK parent in ontology namespace (if present)
+            off_parent_uri = row.get("off_tech_parent", {}).get("value")
+            if off_parent_uri and "#" in off_parent_uri:
+                def_tech_to_broad_parents[def_local].add(off_parent_uri.split("#")[-1])
+
+            # close match heuristic: exact label match between defensive/offensive
+            def_label = (row.get("def_tech_label", {}).get("value") or "").strip().lower()
+            off_label = (row.get("off_tech_label", {}).get("value") or "").strip().lower()
+            if off_tech_id and def_label and off_label and def_label == off_label:
+                def_tech_to_close_attack_ids[def_local].add(off_tech_id)
+        print(f"  Loaded mappings rows: {len(mappings_payload.get('results', {}).get('bindings', []))}")
+    except Exception as e:
+        print(f"  WARNING: failed to parse {MAPPINGS_JSON_PATH}: {e}")
+else:
+    print(f"  WARNING: mappings artifact not found at {MAPPINGS_JSON_PATH}")
 
 # ── collect all d3f:* entities ───────────────────────────────────────────────
 
@@ -161,6 +412,108 @@ def get_notes(uri):
     notes = list(g.objects(uri, SKOS.scopeNote)) + list(g.objects(uri, SKOS.note))
     return [str(n).strip() for n in notes if str(n).strip()]
 
+
+def get_alt_labels(uri):
+    """Collect skos:altLabel values."""
+    return [str(v).strip() for v in g.objects(uri, SKOS.altLabel) if str(v).strip()]
+
+
+def get_defined_bys(uri):
+    """Collect rdfs:isDefinedBy URIs."""
+    return [str(v) for v in g.objects(uri, RDFS.isDefinedBy) if isinstance(v, URIRef)]
+
+
+def get_ontology_metadata():
+    """Return ontology-level title, description, and license from the merged graph."""
+    ontology = next(g.subjects(RDF.type, OWL.Ontology), None)
+    if ontology is None:
+        return {
+            "title": "D3FEND\u2122 A Knowledge Graph of Cybersecurity Countermeasures",
+            "description": (
+                "D3FEND\u2122 is a knowledge graph of cybersecurity countermeasures developed\n"
+                "by MITRE. This LinkML schema is generated from the authoritative OWL/TTL\n"
+                "ontology artifacts."
+            ),
+            "license": "Apache-2.0",
+        }
+    return {
+        "title": str(g.value(ontology, DCTERMS.title) or "D3FEND\u2122 A Knowledge Graph of Cybersecurity Countermeasures"),
+        "description": str(g.value(ontology, DCTERMS.description) or ""),
+        "license": str(g.value(ontology, DCTERMS.license) or "Apache-2.0"),
+    }
+
+
+def mapping_curies_from_class_annotations(class_local: str, class_annotations: dict[str, str]):
+    """Build LinkML mapping lists for a class.
+
+    Returns a dict with keys among:
+      exact_mappings, related_mappings, close_mappings, broad_mappings
+    """
+    mapping_fields: dict[str, list[str]] = {
+        "exact_mappings": [],
+        "related_mappings": [],
+        "close_mappings": [],
+        "broad_mappings": [],
+    }
+
+    # Exact mappings from explicit identifiers.
+    attack_id = class_annotations.get("attack-id")
+    if attack_id:
+        if attack_id.startswith("AML."):
+            mapping_fields["exact_mappings"].append(f"atlas:{attack_id}")
+        elif re.match(r"^ST\d{4}", attack_id):
+            mapping_fields["exact_mappings"].append(f"sparta:{attack_id}")
+        else:
+            mapping_fields["exact_mappings"].append(f"attack:{attack_id}")
+
+    cwe_id = class_annotations.get("cwe-id")
+    if cwe_id:
+        mapping_fields["exact_mappings"].append(f"cwe:{cwe_id}")
+
+    capec_id = class_annotations.get("capec-id")
+    if capec_id:
+        mapping_fields["exact_mappings"].append(f"capec:{capec_id}")
+
+    # Related mappings from curated def->off technique map.
+    for off_id in sorted(def_tech_to_attack_ids.get(class_local, set())):
+        mapping_fields["related_mappings"].append(f"attack:{off_id}")
+
+    # Close mappings from strict same-label heuristic.
+    for off_id in sorted(def_tech_to_close_attack_ids.get(class_local, set())):
+        mapping_fields["close_mappings"].append(f"attack:{off_id}")
+
+    # Broad mappings to ATT&CK parent techniques in D3FEND namespace.
+    for parent_local in sorted(def_tech_to_broad_parents.get(class_local, set())):
+        mapping_fields["broad_mappings"].append(f"d3f:{parent_local}")
+
+    # UCO class mappings from static dictionary.
+    uco_entry = UCO_CLASS_MAPPINGS.get(class_local, {})
+    for field, values in uco_entry.items():
+        mapping_fields[field].extend(values)
+
+    # STIX class mappings from static dictionary.
+    stix_entry = STIX_CLASS_MAPPINGS.get(class_local, {})
+    for field, values in stix_entry.items():
+        mapping_fields[field].extend(values)
+
+    # SPDX class mappings from static dictionary.
+    spdx_entry = SPDX_CLASS_MAPPINGS.get(class_local, {})
+    for field, values in spdx_entry.items():
+        mapping_fields[field].extend(values)
+
+    # OSCAL class mappings from static dictionary.
+    oscal_entry = OSCAL_CLASS_MAPPINGS.get(class_local, {})
+    for field, values in oscal_entry.items():
+        mapping_fields[field].extend(values)
+
+    # De-duplicate and drop empty keys.
+    compact = {}
+    for key, values in mapping_fields.items():
+        unique_values = sorted(set(values))
+        if unique_values:
+            compact[key] = unique_values
+    return compact
+
 # ── build individual-by-type index (for enums) ───────────────────────────────
 
 ind_types: dict[str, list[str]] = defaultdict(list)
@@ -219,6 +572,7 @@ CLASS_ANNOTATION_PROPS = {
 # ── build the YAML string piece by piece ─────────────────────────────────────
 
 lines = []
+ontology_metadata = get_ontology_metadata()
 
 def emit(s=""):
     lines.append(s)
@@ -228,12 +582,9 @@ def emit(s=""):
 emit("---")
 emit("id: https://d3fend.mitre.org/ontologies/d3fend.owl")
 emit("name: d3fend")
-emit("title: D3FEND\u2122 A Knowledge Graph of Cybersecurity Countermeasures")
-emit("description: |-")
-emit("  D3FEND\u2122 is a knowledge graph of cybersecurity countermeasures developed")
-emit("  by MITRE. This LinkML schema is generated from the authoritative OWL/TTL")
-emit("  ontology artifacts.")
-emit("license: Apache-2.0")
+emit(f"title: {yaml_str(ontology_metadata['title'])}")
+emit(f"description: {yaml_str(ontology_metadata['description'], 0)}")
+emit(f"license: {yaml_str(ontology_metadata['license'])}")
 emit("see_also:")
 emit("  - https://d3fend.mitre.org/")
 emit("  - https://github.com/d3fend/d3fend-ontology")
@@ -252,7 +603,7 @@ emit("  xsd: http://www.w3.org/2001/XMLSchema#")
 emit("  skos: http://www.w3.org/2004/02/skos/core#")
 emit("  dcterms: http://purl.org/dc/terms/")
 emit("  dc: http://purl.org/dc/elements/1.1/")
-emit("  schema: https://schema.org/")
+emit("  schema: http://schema.org/")
 emit("  dbr: http://dbpedia.org/resource/  # placeholder")
 emit("  wikidata: https://www.wikidata.org/wiki/  # placeholder")
 emit("  capec: https://capec.mitre.org/data/definitions/  # placeholder")
@@ -262,6 +613,11 @@ emit("  attack: https://attack.mitre.org/  # placeholder")
 emit("  atlas: https://atlas.mitre.org/  # placeholder")
 emit("  sparta: https://sparta.aerospace.org/  # placeholder")
 emit("  cci: https://public.cyber.mil/stigs/cci/  # placeholder")
+emit("  mitre-attack: https://attack.mitre.org/  # alias placeholder")
+emit("  unified_cyber_ontology: https://lmodel.github.io/uco-master/  # UCO prefix")
+emit("  stix: https://lmodel.github.io/stix/")
+emit("  spdx: https://lmodel.github.io/spdx/")
+emit("  oscal: https://lmodel.github.io/oscal/")
 emit()
 emit("default_prefix: d3f")
 emit("default_range: string")
@@ -274,9 +630,9 @@ emit()
 
 emit("subsets:")
 subsets = [
-    ("D3FENDCore",        "Core D3FEND ontology classes and properties"),
-    ("D3FENDKBThing",     "D3FEND Knowledge Base reference entities"),
-    ("ExternalThing",     "External things referenced from the knowledge base"),
+    ("D3FENDCoreSubset",        "Core D3FEND ontology classes and properties"),
+    ("D3FENDKBThingSubset",     "D3FEND Knowledge Base reference entities"),
+    ("ExternalThingSubset",     "External things referenced from the knowledge base"),
     ("ATTACKEnterprise",  "ATT&CK Enterprise technique classes"),
     ("ATTACKMobile",      "ATT&CK Mobile technique classes"),
     ("ATLASML",           "ATLAS (Adversarial Threat Landscape for AI Systems) classes"),
@@ -333,11 +689,13 @@ emit()
 # -- object properties as slots ------------------------------------------------
 for p in all_obj_props:
     p_name = local_name(p)
-    safe_p = safe_name(p_name)
+    safe_p = safe_slot_name(p_name)
     label = get_label(p)
     defn = get_definition(p)
     comments = get_comments(p)
     notes = get_notes(p)
+    alt_labels = get_alt_labels(p)
+    defined_bys = get_defined_bys(p)
 
     domains = [str(d) for d in g.objects(p, RDFS.domain) if isinstance(d, URIRef)]
     ranges  = [str(r) for r in g.objects(p, RDFS.range)  if isinstance(r, URIRef)]
@@ -351,7 +709,7 @@ for p in all_obj_props:
 
     if sub_props:
         parent_sp = local_name(sub_props[0])
-        emit(f"    is_a: {safe_name(parent_sp)}")
+        emit(f"    is_a: {safe_slot_name(parent_sp)}")
 
     if label and str(label) != p_name:
         emit(f"    title: {yaml_str(str(label))}")
@@ -368,6 +726,16 @@ for p in all_obj_props:
         emit(f"    notes:")
         for n in notes:
             emit(f"      - {yaml_str_inline(n)}")
+
+    if alt_labels:
+        emit(f"    aliases:")
+        for alt in alt_labels:
+            emit(f"      - {yaml_str_inline(alt)}")
+
+    if defined_bys:
+        emit(f"    see_also:")
+        for ref in defined_bys:
+            emit(f"      - {ref}")
 
     # domain hint
     if domains:
@@ -391,11 +759,13 @@ for p in all_obj_props:
 # -- datatype properties as slots ----------------------------------------------
 for p in all_data_props:
     p_name = local_name(p)
-    safe_p = safe_name(p_name)
+    safe_p = safe_slot_name(p_name)
     label = get_label(p)
     defn = get_definition(p)
     comments = get_comments(p)
     notes = get_notes(p)
+    alt_labels = get_alt_labels(p)
+    defined_bys = get_defined_bys(p)
 
     domains = [str(d) for d in g.objects(p, RDFS.domain) if isinstance(d, URIRef)]
     ranges  = [r for r in g.objects(p, RDFS.range)]
@@ -408,7 +778,7 @@ for p in all_data_props:
 
     if sub_props:
         parent_sp = local_name(sub_props[0])
-        emit(f"    is_a: {safe_name(parent_sp)}")
+        emit(f"    is_a: {safe_slot_name(parent_sp)}")
 
     if label and str(label) != p_name:
         emit(f"    title: {yaml_str(str(label))}")
@@ -425,6 +795,16 @@ for p in all_data_props:
         emit(f"    notes:")
         for n in notes:
             emit(f"      - {yaml_str_inline(n)}")
+
+    if alt_labels:
+        emit(f"    aliases:")
+        for alt in alt_labels:
+            emit(f"      - {yaml_str_inline(alt)}")
+
+    if defined_bys:
+        emit(f"    see_also:")
+        for ref in defined_bys:
+            emit(f"      - {ref}")
 
     if domains:
         d3f_domains = [safe_name(local_name(d)) for d in domains if d.startswith(str(D3F))]
@@ -470,7 +850,7 @@ for p in all_data_props:
     emit()
 
 # -- annotation properties as slots -------------------------------------------
-# Key annotation properties that carry data not modeled elsewhere
+# Generate slots for all native D3FEND annotation properties.
 ANNOT_SLOT_RANGES = {
     "attack-id":          "string",
     "d3fend-id":          "string",
@@ -488,7 +868,6 @@ ANNOT_SLOT_RANGES = {
     "kb-organization":    "string",
     "kb-mitre-analysis":  "string",
     "kb-reference-title": "string",
-    "contributor":        "string",
     "attack-kb-annotation": "string",
     "cwe-kb-annotation":  "string",
     "d3fend-annotation":  "string",
@@ -496,15 +875,18 @@ ANNOT_SLOT_RANGES = {
     "definition":         "string",
     "label":              "string",
     "identifier":         "string",
+    "display-baseurl":    "uri",
 }
 
 for p in all_annot_props:
     p_name = local_name(p)
-    if p_name not in ANNOT_SLOT_RANGES:
-        continue
-    safe_p = safe_name(p_name)
+    safe_p = safe_slot_name(p_name)
     label = get_label(p)
     defn = get_definition(p)
+    comments = get_comments(p)
+    notes = get_notes(p)
+    alt_labels = get_alt_labels(p)
+    defined_bys = get_defined_bys(p)
 
     emit(f"  {safe_p}:")
     emit(f"    slot_uri: d3f:{p_name}")
@@ -512,7 +894,28 @@ for p in all_annot_props:
         emit(f"    title: {yaml_str(str(label))}")
     if defn:
         emit(f"    description: {yaml_str(str(defn), 4)}")
-    r = ANNOT_SLOT_RANGES[p_name]
+
+    if comments:
+        emit(f"    comments:")
+        for c in comments:
+            emit(f"      - {yaml_str_inline(c)}")
+
+    if notes:
+        emit(f"    notes:")
+        for n in notes:
+            emit(f"      - {yaml_str_inline(n)}")
+
+    if alt_labels:
+        emit(f"    aliases:")
+        for alt in alt_labels:
+            emit(f"      - {yaml_str_inline(alt)}")
+
+    if defined_bys:
+        emit(f"    see_also:")
+        for ref in defined_bys:
+            emit(f"      - {ref}")
+
+    r = ANNOT_SLOT_RANGES.get(p_name, "string")
     if r == "string" and p_name in ("synonym", "kb-author"):
         emit(f"    range: {r}")
         emit(f"    multivalued: true")
@@ -546,7 +949,7 @@ emit()
 # Class → set of applicable slots (from domain declarations)
 class_domain_slots: dict[str, list[str]] = defaultdict(list)
 for p in all_obj_props + all_data_props:
-    p_name = safe_name(local_name(p))
+    p_name = safe_slot_name(local_name(p))
     for d in g.objects(p, RDFS.domain):
         if isinstance(d, URIRef) and str(d).startswith(str(D3F)):
             class_domain_slots[safe_name(local_name(d))].append(p_name)
@@ -573,11 +976,11 @@ def get_subset(name: str, uri) -> list[str]:
     parents = [str(p) for p in g.objects(uri, RDFS.subClassOf) if isinstance(p, URIRef)]
     if not subsets_list:
         if any("D3FENDCore" in p for p in parents):
-            subsets_list.append("D3FENDCore")
+            subsets_list.append("D3FENDCoreSubset")
         elif any("D3FENDKBThing" in p for p in parents):
-            subsets_list.append("D3FENDKBThing")
+            subsets_list.append("D3FENDKBThingSubset")
         elif any("ExternalThing" in p for p in parents):
-            subsets_list.append("ExternalThing")
+            subsets_list.append("ExternalThingSubset")
     return subsets_list
 
 # Track which class names we emit (to avoid duplicates if safe_name collides)
@@ -596,6 +999,7 @@ for c in all_classes:
     defn     = get_definition(c)
     comments = get_comments(c)
     notes    = get_notes(c)
+    alt_labels = get_alt_labels(c)
 
     # Get d3f-specific annotations present on this class
     class_annotations: dict[str, str] = {}
@@ -613,9 +1017,13 @@ for c in all_classes:
 
     # seeAlso
     see_alsos = [str(sa) for sa in g.objects(c, RDFS.seeAlso) if isinstance(sa, URIRef)]
+    defined_bys = get_defined_bys(c)
 
     # Slots declared on this class through domain
     local_slots = class_domain_slots.get(c_name, [])
+
+    # Mapping fields from IDs and curated mappings artifact.
+    class_mappings = mapping_curies_from_class_annotations(c_local, class_annotations)
 
     emit(f"  {c_name}:")
     emit(f"    class_uri: d3f:{c_local}")
@@ -647,9 +1055,19 @@ for c in all_classes:
         for n in notes:
             emit(f"      - {yaml_str_inline(n)}")
 
-    if see_alsos:
+    if alt_labels:
+        emit(f"    aliases:")
+        for alt in alt_labels:
+            emit(f"      - {yaml_str_inline(alt)}")
+
+    merged_see_alsos = []
+    for ref in see_alsos + defined_bys:
+        if ref not in merged_see_alsos:
+            merged_see_alsos.append(ref)
+
+    if merged_see_alsos:
         emit(f"    see_also:")
-        for sa in see_alsos[:5]:  # cap at 5 per class
+        for sa in merged_see_alsos[:8]:
             emit(f"      - {sa}")
 
     if is_also_individual:
@@ -662,6 +1080,14 @@ for c in all_classes:
         for k, v in class_annotations.items():
             emit(f"      {safe_name(k)}: {yaml_str_inline(v[:300])}")
 
+    if class_mappings:
+        for field_name in ("exact_mappings", "related_mappings", "close_mappings", "broad_mappings"):
+            values = class_mappings.get(field_name)
+            if values:
+                emit(f"    {field_name}:")
+                for v in values:
+                    emit(f"      - {v}")
+
     if local_slots:
         emit(f"    slots:")
         for sl in sorted(set(local_slots)):
@@ -669,22 +1095,7 @@ for c in all_classes:
 
     emit()
 
-# ── append open enum stubs at end of file ─────────────────────────────────────
-# Post-process: find the enums: block and inject the open enum stubs after it
-# or just add them at the very end
-
-emit()
-emit("# ── open-ended enumeration stubs ───────────────────────────────────────────")
-emit("# These enums are referenced by open-enum slots (anyOf enum + string).")
-emit("# The permissible_values lists below are informative; string values are also accepted.")
-emit()
-
-
-def emit_open_enum(name: str, values: list[str], description: str = ""):
-    # Find existing lines block to avoid duplication
-    emit(f"  # enum: {name} (open)")
-    # We add these in the enums section but as a workaround emit here
-    # and rely on post-processing to move them into the right section
+# ── open enum stubs to inject into enums section ──────────────────────────────
 
 OPEN_ENUM_YAML = {
     "RiskImpactEnum": {
@@ -701,15 +1112,15 @@ OPEN_ENUM_YAML = {
     },
     "StageEnum": {
         "description": "Stage value. Open enum: arbitrary string values also accepted.",
-        "values": [],
+        "values": ["Unspecified"],
     },
     "RatingEnum": {
         "description": "Generic rating. Open enum: arbitrary string values also accepted.",
-        "values": [],
+        "values": ["Unspecified"],
     },
     "ExpectationRatingEnum": {
         "description": "Expectation rating. Open enum: arbitrary string values also accepted.",
-        "values": [],
+        "values": ["Unspecified"],
     },
 }
 
@@ -717,8 +1128,8 @@ OPEN_ENUM_YAML = {
 
 output_path = "src/d3fend/schema/d3fend.yaml"
 
-# We need to insert the open enum stubs into the enums: section.
-# Strategy: find "enums:" line and append after all existing enums (before "slots:")
+# We inject the open enum stubs immediately before the `slots:` section.
+# This keeps all enums in one place and avoids in-entry insertion mistakes.
 yaml_text = "\n".join(lines)
 
 # Build open enum YAML block
@@ -736,11 +1147,11 @@ for enum_name, enum_info in OPEN_ENUM_YAML.items():
 
 open_enum_yaml_str = "\n".join(open_enum_block)
 
-# Insert before "slots:" section
-yaml_text = yaml_text.replace("\nslots:\n", "\n" + open_enum_yaml_str + "\nslots:\n", 1)
-
-# Remove the trailing open enum stub lines we emitted (they were a workaround)
-# (the emit()s after "open enum stubs" aren't really needed, but won't hurt)
+# Insert once before `slots:` section; fail fast if insertion point is missing.
+slots_marker = "\nslots:\n"
+if slots_marker not in yaml_text:
+    raise RuntimeError("Expected `slots:` section marker not found while injecting open enums")
+yaml_text = yaml_text.replace(slots_marker, "\n" + open_enum_yaml_str + slots_marker, 1)
 
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(yaml_text)

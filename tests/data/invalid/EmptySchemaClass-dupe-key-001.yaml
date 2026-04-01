@@ -1,0 +1,10 @@
+---
+# INVALID: Duplicate YAML keys — second 'label' silently wins in permissive parsers,
+# but semantic content is structurally anomalous; also tests behaviour as
+# an empty-body class-load via a non-existent 'EmptySchemaClass' name.
+#
+# The class name EmptySchemaClass does not exist in the generated datamodel,
+# so AttributeError is raised at getattr().
+label: "First label"
+label: "Second label — duplicate key is invalid per YAML 1.2 spec"
+description: "Duplicate key YAML; class name not in module either."

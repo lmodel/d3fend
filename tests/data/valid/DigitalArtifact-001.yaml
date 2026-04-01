@@ -1,0 +1,8 @@
+---
+# DigitalArtifact with d3fend-artifact-data-property slot (domain_of: DigitalArtifact)
+label: "Example Digital Artifact"
+title: "Example Digital Artifact"
+description: >-
+  An information-bearing artifact (object) that is, or is encoded to be used
+  with, a digital computer system.
+d3fend-artifact-data-property: "artifact-encoding-utf8"

@@ -1,0 +1,5 @@
+---
+# INVALID: YAML flow mapping opened but never closed — triggers yaml.ScannerError
+label: "Bad Technique"
+title: {key: value but mapping is never closed
+description: "Unreachable."

@@ -1,0 +1,9 @@
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+
+# ABox-style assertions: concrete resources typed to ontology classes
+d3f:example-file-analysis-001 a d3f:FileAnalysis ;
+    d3f:label "Example File Analysis" ;
+    d3f:analyzes d3f:example-file-001 .
+
+d3f:example-file-001 a d3f:File ;
+    d3f:label "Example File" .

@@ -1,0 +1,9 @@
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+
+# ABox-style assertions representing a concrete analysis resource
+d3f:example-network-analysis-001 a d3f:NetworkTrafficAnalysis ;
+    d3f:label "Example Network Traffic Analysis" ;
+    d3f:analyzes d3f:example-traffic-001 .
+
+d3f:example-traffic-001 a d3f:NetworkTraffic ;
+    d3f:label "Example Network Traffic" .

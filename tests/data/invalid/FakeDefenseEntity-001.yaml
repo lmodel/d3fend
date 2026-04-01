@@ -1,0 +1,7 @@
+---
+# INVALID: Class name FakeDefenseEntity does not exist in d3fend.datamodel.d3fend.
+# Loading triggers AttributeError at getattr(d3fend_model, "FakeDefenseEntity").
+label: "Fake Defense Entity"
+description: "Another fictitious class that will not be found in the module."
+synonym:
+  - "Imaginary Control"

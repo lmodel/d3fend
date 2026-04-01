@@ -1,0 +1,5 @@
+---
+# INVALID: YAML flow sequence opened but never closed — triggers yaml.ScannerError
+label: [unclosed list item
+description: "This line is unreachable; the parser fails on the line above."
+

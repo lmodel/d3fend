@@ -1,0 +1,7 @@
+---
+# Detect defensive tactic — a D3FEND Core tactic node
+label: "Detect"
+description: >-
+  The detect tactic is used to identify adversary access to or unauthorized
+  activity on computer networks.
+pref-label: "Detect Tactic"

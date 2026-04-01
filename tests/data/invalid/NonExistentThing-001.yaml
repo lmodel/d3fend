@@ -1,0 +1,5 @@
+---
+# INVALID: Class name NonExistentThing does not exist in d3fend.datamodel.d3fend.
+# Loading triggers AttributeError at getattr(d3fend_model, "NonExistentThing").
+label: "Ghost Class"
+description: "This class is not defined anywhere in the generated datamodel."

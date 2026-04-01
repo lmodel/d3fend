@@ -1,0 +1,15 @@
+---
+# FileAnalysis is a subclass of DefensiveTechnique — tests inheritance slot resolution
+label: "File Analysis"
+title: "File Analysis"
+d3fend-id: "D3-FA"
+description: "Analysis of a file for indicators of malicious activity."
+kb-article: |
+  ## How it works
+
+  File bytes are analyzed through static and dynamic analysis techniques to
+  identify signatures, suspicious patterns, or behaviors consistent with known
+  malware families.
+analyzes:
+  - "File"
+  - "ExecutableBinary"

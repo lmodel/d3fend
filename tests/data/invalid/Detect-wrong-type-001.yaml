@@ -1,0 +1,6 @@
+---
+# INVALID: display-order slot has range: integer but receives a non-numeric string.
+# linkml-runtime type coercion raises ValueError when int() conversion fails.
+label: "Bad Detect"
+display-order: "not-an-integer"
+description: "display-order must be an integer; this string value is invalid."

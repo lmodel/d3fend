@@ -1,0 +1,10 @@
+---
+# DetectionEvent with all applicable data properties populated
+label: "Suspicious Login Detection"
+title: "Suspicious Login Detection"
+description: >-
+  A detection event capturing an identification of an unauthorized login attempt
+  from an unusual geographic location outside normal business hours.
+definition: >-
+  An event capturing the identification of a potential security issue such as
+  unauthorized access attempts, policy violations, or anomalous activities.

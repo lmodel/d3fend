@@ -114,16 +114,19 @@ gen-project:
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
 
   @# Some generators ignore config_yaml or cannot create directories, so we run them separately.
+  @echo 'gen-java running ...'
   uv run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
 
   @if [ ! -d "{{dest}}/typescript" ]; then \
     mkdir -p {{dest}}/typescript ; \
   fi
+  @echo 'gen-typescript running ...'
   uv run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts
 
   @if [ ! -d "{{dest}}/owl" ]; then \
     mkdir -p {{dest}}/owl ; \
   fi
+  @echo 'gen-owl running ...'
   uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > "{{dest}}/owl/{{schema_name}}.owl.ttl"
 
 # ============== Migrations recipes for Copier ==============

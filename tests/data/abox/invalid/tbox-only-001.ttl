@@ -1,0 +1,5 @@
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# INVALID for this test suite: only TBox declaration, no instance assertions
+d3f:OnlyAClass a owl:Class .
