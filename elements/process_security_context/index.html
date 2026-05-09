@@ -524,11 +524,6 @@ Alias: process_security_context</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../AuthenticationService/">AuthenticationService</a></td>
-<td>An authentication service is a mechanism, analogous to the use of passwords o...</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../ServiceApplicationProcess/">ServiceApplicationProcess</a></td>
 <td>A Service Application Process performs specific tasks or provides functionali...</td>
 <td>no</td>
@@ -539,8 +534,8 @@ Alias: process_security_context</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Process/">Process</a></td>
-<td>A process is an instance of a computer program that is being executed</td>
+<td><a href="../DHCPService/">DHCPService</a></td>
+<td>A DHCP service assigns IP address and modifies network configurations</td>
 <td>no</td>
 </tr>
 <tr>
@@ -549,78 +544,8 @@ Alias: process_security_context</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../AuthorizationService/">AuthorizationService</a></td>
-<td>An authorization service ensures that the user is authorized to have access t...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DHCPService/">DHCPService</a></td>
-<td>A DHCP service assigns IP address and modifies network configurations</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../LocalAuthenticationService/">LocalAuthenticationService</a></td>
-<td>A local authentication service running on a host can authenticate a user logg...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../NetworkService/">NetworkService</a></td>
-<td>In computer networking, a network service is an application running at the ne...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ParentProcess/">ParentProcess</a></td>
-<td>In computing, a parent process is a process that has created one or more chil...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ScheduledJob/">ScheduledJob</a></td>
-<td>A task scheduler process is an operating system process that executes schedul...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ChildProcess/">ChildProcess</a></td>
-<td>A child process in computing is a process created by another process (the par...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DirectoryService/">DirectoryService</a></td>
-<td>In computing, directory service or name service maps the names of network res...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ApplicationProcess/">ApplicationProcess</a></td>
-<td>An application process is an instance of an application computer program that...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MailService/">MailService</a></td>
-<td>A mail service provides the ability to send and receive mail across a compute...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DatabaseService/">DatabaseService</a></td>
-<td>A database service interacts with a database, either retrieving data through ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../RemoteAuthorizationService/">RemoteAuthorizationService</a></td>
-<td>A remote authorization service provides for the authorization of a user acros...</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../RemoteAuthenticationService/">RemoteAuthenticationService</a></td>
 <td>A remote authentication service provides for the authentication of a user acr...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ScriptApplicationProcess/">ScriptApplicationProcess</a></td>
-<td>A script application process is an application process interpreting an execut...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../OperatingSystemProcess/">OperatingSystemProcess</a></td>
-<td>An operating system process, or system process, is a process running to perfo...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -629,8 +554,18 @@ Alias: process_security_context</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ContainerProcess/">ContainerProcess</a></td>
-<td>A running instance of a container image</td>
+<td><a href="../LocalAuthorizationService/">LocalAuthorizationService</a></td>
+<td>A local authorization service running on a host can authorize a user logged i...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../RemoteAuthorizationService/">RemoteAuthorizationService</a></td>
+<td>A remote authorization service provides for the authorization of a user acros...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ScriptApplicationProcess/">ScriptApplicationProcess</a></td>
+<td>A script application process is an application process interpreting an execut...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -639,8 +574,43 @@ Alias: process_security_context</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../HMIApplicationProcess/">HMIApplicationProcess</a></td>
-<td>The instructions within an HMI defined by user programming to interpret visua...</td>
+<td><a href="../ContainerProcess/">ContainerProcess</a></td>
+<td>A running instance of a container image</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ParentProcess/">ParentProcess</a></td>
+<td>In computing, a parent process is a process that has created one or more chil...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ChildProcess/">ChildProcess</a></td>
+<td>A child process in computing is a process created by another process (the par...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../LocalAuthenticationService/">LocalAuthenticationService</a></td>
+<td>A local authentication service running on a host can authenticate a user logg...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DatabaseService/">DatabaseService</a></td>
+<td>A database service interacts with a database, either retrieving data through ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../AuthorizationService/">AuthorizationService</a></td>
+<td>An authorization service ensures that the user is authorized to have access t...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ApplicationProcess/">ApplicationProcess</a></td>
+<td>An application process is an instance of an application computer program that...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../OperatingSystemProcess/">OperatingSystemProcess</a></td>
+<td>An operating system process, or system process, is a process running to perfo...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -649,8 +619,38 @@ Alias: process_security_context</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../LocalAuthorizationService/">LocalAuthorizationService</a></td>
-<td>A local authorization service running on a host can authorize a user logged i...</td>
+<td><a href="../DirectoryService/">DirectoryService</a></td>
+<td>In computing, directory service or name service maps the names of network res...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Process/">Process</a></td>
+<td>A process is an instance of a computer program that is being executed</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../AuthenticationService/">AuthenticationService</a></td>
+<td>An authentication service is a mechanism, analogous to the use of passwords o...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MailService/">MailService</a></td>
+<td>A mail service provides the ability to send and receive mail across a compute...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../HMIApplicationProcess/">HMIApplicationProcess</a></td>
+<td>The instructions within an HMI defined by user programming to interpret visua...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ScheduledJob/">ScheduledJob</a></td>
+<td>A task scheduler process is an operating system process that executes schedul...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../NetworkService/">NetworkService</a></td>
+<td>In computer networking, a network service is an application running at the ne...</td>
 <td>no</td>
 </tr>
 </tbody>
