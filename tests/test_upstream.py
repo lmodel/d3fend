@@ -126,7 +126,10 @@ def test_a_released_copy_keeps_the_designation_and_the_licence():
     copy = yaml.safe_load((ROOT / ".lokf" / "d3fend.yaml").read_text(encoding="utf-8"))
     annotations = copy["annotations"]
     assert annotations["upstream_copyright"] == "Copyright 2022 The MITRE Corporation"
-    assert "Any copy you make for such purposes is authorized" in annotations["upstream_license"]
+    assert (
+        "Any copy you make for such purposes is authorized"
+        in annotations["upstream_license"]
+    )
     assert annotations["upstream_terms"] == "https://d3fend.mitre.org/tou"
 
 

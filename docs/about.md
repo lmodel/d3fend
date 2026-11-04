@@ -63,6 +63,8 @@ Every identifier is a CURIE, so both routes to RDF work. Apply `project/jsonld/d
 
 D3FEND's classes are not LinkML classes, as above. A host that wants a concept of a technique uses a kind and names the term by its CURIE.
 
+A record does not tell a class restriction from a direct triple: both are values of one slot. `upstream/d3fend.ttl` keeps the difference, and no reasoner ran, so a value is one the file states and not one it implies.
+
 `tests/test_coverage.py` lists the rest:
 
 - the eleven restrictions with a literal filler that the edition does not obey, and one `owl:allValuesFrom` and two anonymous unions, none of which names a target a record could hold;
