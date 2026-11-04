@@ -1,0 +1,158 @@
+MITRE D3FEND LinkML Schema (d3fend)
+Copyright 2026 Noel McLoughlin
+
+The code in this repository is licensed under the Apache License,
+Version 2.0 (see LICENSE). Some of the content it carries is third-party
+work under its own terms, listed below. None of the parties named here has
+endorsed this project, and its use does not imply endorsement by any of them.
+
+MITRE D3FEND
+------------
+
+src/d3fend/schema/, src/d3fend/datamodel/ and project/ model MITRE D3FEND,
+edition 1.6.0 of 2026-08-31, which The MITRE Corporation publishes at
+https://d3fend.mitre.org/. They are this project's rendering, not D3FEND's or
+MITRE's. D3FEND and the D3FEND logo are trademarks of The MITRE Corporation.
+
+upstream/d3fend.ttl is the ontology as MITRE publishes it, identical to its
+counterpart at d3fend.mitre.org when it was read, and
+scripts/check_upstream_release.py pins it by its git object hash.
+src/d3fend/data/d3fend-1.6.0.yaml holds the same terms and text as records, and
+src/d3fend/schema/d3fend_entries.yaml holds each property's label and definition
+as a slot's title and description, each word for word. tests/data/ holds short
+excerpts of records under the same terms. upstream/TERMS.txt holds the Terms of
+Use, https://d3fend.mitre.org/tou/, which authorise such copies on condition that
+each reproduces MITRE's copyright designation and this licence:
+
+  Copyright 2022 The MITRE Corporation.
+
+  LICENSE
+
+  The MITRE Corporation (MITRE) hereby grants you a non-exclusive, royalty-free
+  license to use D3FEND for research, development, and commercial purposes. Any
+  copy you make for such purposes is authorized provided that you reproduce
+  MITRE's copyright designation and this license in any such copy.
+
+  DISCLAIMERS
+
+  ALL DOCUMENTS AND THE INFORMATION CONTAINED THEREIN ARE PROVIDED ON AN "AS IS"
+  BASIS AND THE CONTRIBUTOR, THE ORGANIZATION HE/SHE REPRESENTS OR IS SPONSORED
+  BY (IF ANY), THE MITRE CORPORATION, ITS BOARD OF TRUSTEES, OFFICERS, AGENTS,
+  AND EMPLOYEES, DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+  LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION THEREIN WILL NOT
+  INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR
+  A PARTICULAR PURPOSE.
+
+The designation is the one the ontology's own header gives. That header also
+states the licence as MIT, and upstream/LICENSE.md holds the MIT licence of the
+repository that builds the ontology, https://github.com/d3fend/d3fend-ontology, at
+tag 1.6.0. This project keeps to both. The same header says:
+
+  D3FEND is funded by the National Security Agency (NSA) Cybersecurity
+  Directorate and managed by the National Security Engineering Center (NSEC)
+  which is operated by The MITRE Corporation. This software was produced for the
+  U.S. Government under Basic Contract No. W56KGU-18-D0004, and is subject to the
+  Rights in Noncommercial Computer Software and Noncommercial Computer Software
+  Documentation Clause 252.227-7014 (FEB 2012).
+
+MITRE's site adds: Approved for Public Release; Distribution Unlimited #20-2338
+and #23-1207.
+
+Text inside D3FEND that is another party's
+------------------------------------------
+
+The ontology, and so upstream/d3fend.ttl and the catalogue, carries text its
+Terms of Use name as third-party:
+
+  This project makes use of MITRE ATT&CK. MITRE ATT&CK and ATT&CK are registered
+  trademarks of The MITRE Corporation. MITRE ATT&CK content is subject to the
+  MITRE ATT&CK terms of use: https://attack.mitre.org/resources/legal-and-branding/terms-of-use/
+  (c) 2026 The MITRE Corporation. This work is reproduced and distributed with
+  the permission of The MITRE Corporation.
+
+  The MITRE Corporation (MITRE) hereby grants you a non-exclusive, royalty-free
+  license to use ATT&CK for research, development, and commercial purposes. Any
+  copy you make for such purposes is authorized provided that you reproduce
+  MITRE's copyright designation and this license in any such copy.
+
+  This project makes use of MITRE ATLAS. MITRE ATLAS and MITRE ATT&CK are a
+  trademark and registered trademark of The MITRE Corporation. MITRE ATLAS
+  content is subject to the ATLAS terms of use. The address D3FEND gives for them,
+  https://atlas.mitre.org/terms, did not answer on 2026-11-04. The repository
+  that publishes ATLAS's data, https://github.com/mitre-atlas/atlas-data, is under
+  the Apache License, Version 2.0: Copyright 2021-2026 MITRE.
+
+  This project makes use of the Aerospace SPARTA. (c) 2023 The Aerospace
+  Corporation. This work is reproduced and distributed with the permission of
+  The Aerospace Corporation. SPARTA Terms of Service:
+  https://sparta.aerospace.org/terms-of-service
+
+  The Aerospace Corporation hereby grants you a non-exclusive, royalty-free
+  license to use SPARTA for research, development, and commercial purposes. Any
+  copy you make for such purposes is authorized provided that you reproduce
+  Aerospace's copyright designation and this license in any such copy.
+
+It also carries CWE entries' names and descriptions:
+
+  Copyright (c) 2006-2026, The MITRE Corporation. CWE, CWSS, CWRAF, and the CWE
+  logo are trademarks of The MITRE Corporation. CWE is free to use by any
+  organization or individual for any research, development, and/or commercial
+  purposes, per the CWE Terms of Use: https://cwe.mitre.org/about/termsofuse.html
+
+The values of kb_abstract (339 in this edition), and some definitions and
+comments, quote the sources D3FEND cites: patents, papers, articles, manuals and
+specifications, each named by its record's kb_reference_title, kb_author and
+has_link. Those words stay their authors'. MITRE's licence grants what MITRE
+holds, and this project grants nothing over them: they are not under this
+repository's Apache License. They stay here because they are part of MITRE's file
+and of what the Terms of Use authorise copying. Anyone who republishes them apart
+from D3FEND should check with their authors.
+
+linkml-project-copier
+---------------------
+
+This project was generated from linkml-project-copier
+(https://github.com/linkml/linkml-project-copier), and its justfile,
+configuration and documentation scaffolding derive from that template:
+
+  The MIT License (MIT)
+  Copyright (c) 2025 David Linke
+
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to permit
+  persons to whom the Software is furnished to do so, subject to the
+  following conditions:
+
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+  NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+  USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Knowledge bundle
+----------------
+
+This product maintains its documentation as a Linked Open Knowledge Format
+(LOKF) bundle under .lokf/: https://lokf.nolan-nichols.com/specification/
+
+LOKF is a semantic profile of the Open Knowledge Format (OKF) specification
+by Google Cloud Platform:
+https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
+
+The scripts under .lokf/scripts/ and .lokf/m365/ and the
+knowledge-librarian, knowledge-registrar, knowledge-release and
+knowledge-sync workflows under .github/workflows/ are copies of the
+ktl-sidecar templates in knowledge-trust-ladder
+(https://github.com/noelmcloughlin/knowledge-trust-ladder). The site under
+website/ and the knowledge-website workflow derive from the ktl-website
+templates in the same repository, and website/NOTICE lists the part
+adapted from the LOKF toolkit's site. All of them are licensed under the
+Apache License, Version 2.0.

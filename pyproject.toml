@@ -11,7 +11,7 @@ authors = [
   {name = "Noel McLoughlin", email = "noel.mcloughlin@gmail.com"},
 ]
 license = "Apache-2.0"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "NOTICE"]
 readme = "README.md"
 requires-python = ">=3.10"
 dynamic = ["version"]
@@ -61,11 +61,23 @@ target-version = "py310"
 [tool.codespell]
 skip = [
   "LICENSE",
+  "NOTICE",
   "pyproject.toml",
   "uv.lock",
   "project/*",
   "src/d3fend/datamodel/d3fend_pydantic.py",
   "src/d3fend/datamodel/d3fend.py",
+  # MITRE's words, copied as published: the upstream's files, the catalogue, the slots
+  # and the example records cut from the catalogue. The neighbours' adapt copies, copied
+  # as released. Files copied in by the KTL sidecar sync or written by npm, not by hand.
+  "upstream/*",
+  "src/d3fend/data/*",
+  "src/d3fend/schema/d3fend_entries.yaml",
+  "tests/data/*",
+  "tests/neighbours/*",
+  ".lokf/d3fend.yaml",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
@@ -84,4 +96,12 @@ extend-exclude = [
   "project/*",
   "src/d3fend/datamodel/d3fend_pydantic.py",
   "src/d3fend/datamodel/d3fend.py",
+  "upstream/*",
+  "src/d3fend/data/*",
+  "src/d3fend/schema/d3fend_entries.yaml",
+  "tests/data/*",
+  "tests/neighbours/*",
+  ".lokf/d3fend.yaml",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]
