@@ -6,6 +6,11 @@
 # By default all generators are run. Specify here the ones to skip.
 excludes:
   - markdown
+  # Every kind of entry may hold every relation, and gen-sqlddl writes one join
+  # table per multivalued slot per class: about 4,600 tables, four minutes of a
+  # five-minute run, for a graph nobody queries through those tables. The JSON-LD
+  # context and the catalogue are the way to a graph database.
+  - sqlddl
 
 # Alternatively only specify the generators to run
 # (comment out the above "excludes" section)
@@ -37,6 +42,11 @@ generator_args:
     mergeimports: true
   jsonschema:
     mergeimports: true
+    # A catalogue's entries range over D3fendEntry, an abstract class. With its
+    # concrete descendants the schema offers every kind an entry may be;
+    # without them it offers D3fendEntry alone, which no entry passes.
+    top_class: D3fendCatalog
+    include_range_class_descendants: true
   jsonldcontext:
     mergeimports: true
   # gen-pydantic is not yet supported by gen-project.
