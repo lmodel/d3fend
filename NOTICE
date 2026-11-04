@@ -99,7 +99,7 @@ It also carries CWE entries' names and descriptions:
   organization or individual for any research, development, and/or commercial
   purposes, per the CWE Terms of Use: https://cwe.mitre.org/about/termsofuse.html
 
-The values of kb_abstract (339 in this edition), and some definitions and
+The values of kb_abstract (340 in this edition), and some definitions and
 comments, quote the sources D3FEND cites: patents, papers, articles, manuals and
 specifications, each named by its record's kb_reference_title, kb_author and
 has_link. Those words stay their authors'. MITRE's licence grants what MITRE
