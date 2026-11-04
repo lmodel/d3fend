@@ -96,25 +96,17 @@ def test_the_catalogue_keeps_the_rules():
 
 
 def test_a_record_holds_its_relations():
-    """The relation that makes D3FEND what it is lands where a reader looks for it: a
-    defensive technique names the artifact it acts on and the tactic it enables, and an
-    offensive technique names the same artifact."""
+    """The walk docs/about.md describes: a defensive technique names the artifact it acts
+    on and the tactic it enables, and an offensive technique names the same artifact."""
     entries = conversion.entries_by_id()
     file_analysis = entries["d3f:FileAnalysis"]
     assert file_analysis["type"] == "D3fendDefensiveTechnique"
     assert file_analysis["d3fend_id"] == "D3-FA"
     assert file_analysis["analyzes"] == ["d3f:File"]
     assert file_analysis["enables"] == ["d3f:Detect"]
-    meeting = {
-        entry["id"]
-        for entry in conversion.catalogue()["entries"]
-        if entry["type"] == "D3fendOffensiveTechnique"
-        and any(
-            "d3f:File" in entry.get(key, ())
-            for key in ("modifies", "accesses", "creates")
-        )
-    }
-    assert meeting, "no offensive technique touches a file"
+    file_deletion = entries["d3f:T1070.004"]
+    assert file_deletion["type"] == "D3fendOffensiveTechnique"
+    assert "d3f:File" in file_deletion["deletes"]
 
 
 def test_an_entry_under_two_branches_takes_the_stated_kind():
