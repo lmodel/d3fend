@@ -6,7 +6,7 @@ This page is for anyone reading the schema's elements: it says why D3FEND's term
 
 D3FEND is an OWL ontology of 4,465 classes, but most of those classes are not types anyone instantiates. `d3f:FileAnalysis` names one countermeasure, and `d3f:T1003` one technique of ATT&CK. D3FEND's own conventions say a defensive technique is punned as an instance of its parent class, and its distribution states all but 23 of its 1,939 class restrictions on terms again as direct triples between them, such as `d3f:FileAnalysis d3f:analyzes d3f:File`. So what D3FEND publishes reads as a catalogue of entries with typed relations, and that is what this schema models.
 
-- **A kind of entry is a class.** `D3fendDefensiveTechnique` is one, with `d3f:DefensiveTechnique` as its class IRI. There are 22, each a branch of D3FEND's tree.
+- **A kind of entry is a class.** `D3fendDefensiveTechnique` is one, with `d3f:DefensiveTechnique` as its class IRI. There are 22, each one or more branches of D3FEND's tree.
 - **A property is a slot.** `analyzes` is one, with `d3f:analyzes` as its slot IRI. There are 292 for the ontology's properties, and the subproperty tree, the inverses, the transitive and symmetric flags and the stated domains and ranges come with them.
 - **A term is a record.** `src/d3fend/data/d3fend-1.6.0.yaml` holds one for each class and each individual, with its IRI as `id`. This one is shown without its definition and its article:
 

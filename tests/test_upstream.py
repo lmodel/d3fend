@@ -120,6 +120,16 @@ def test_each_file_that_copies_the_text_carries_the_designation():
     assert "Copyright 2022 The MITRE Corporation" in module_head
 
 
+def test_a_released_copy_keeps_the_designation_and_the_licence():
+    """The schema asset of a release is the adapt copy, and it travels alone, so its header
+    says whose words its slots hold and on what terms."""
+    copy = yaml.safe_load((ROOT / ".lokf" / "d3fend.yaml").read_text(encoding="utf-8"))
+    annotations = copy["annotations"]
+    assert annotations["upstream_copyright"] == "Copyright 2022 The MITRE Corporation"
+    assert "Any copy you make for such purposes is authorized" in annotations["upstream_license"]
+    assert annotations["upstream_terms"] == "https://d3fend.mitre.org/tou"
+
+
 def test_notice_counts_the_abstracts():
     """NOTICE says how many values of kb_abstract quote another party's source."""
     held = sum("kb_abstract" in e for e in conversion.catalogue()["entries"])

@@ -18,6 +18,10 @@
       "value": "Copyright 2022 The MITRE Corporation"
     },
     {
+      "tag": "upstream_license",
+      "value": "The MITRE Corporation (MITRE) hereby grants you a non-exclusive, royalty-free license to use D3FEND for research, development, and commercial purposes. Any copy you make for such purposes is authorized provided that you reproduce MITRE's copyright designation and this license in any such copy."
+    },
+    {
       "tag": "upstream_terms",
       "value": "https://d3fend.mitre.org/tou"
     }
@@ -16263,8 +16267,8 @@
   ],
   "metamodel_version": "1.12.0",
   "source_file": "d3fend.yaml",
-  "source_file_date": "2026-11-04T22:14:58",
-  "source_file_size": 3517,
+  "source_file_date": "2026-11-04T23:14:46",
+  "source_file_size": 3851,
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/d3fend.context.jsonld",

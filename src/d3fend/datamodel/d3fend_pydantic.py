@@ -71,6 +71,18 @@ linkml_meta = LinkMLMeta({'annotations': {'upstream_commit': {'tag': 'upstream_c
                      'upstream_copyright': {'tag': 'upstream_copyright',
                                             'value': 'Copyright 2022 The MITRE '
                                                      'Corporation'},
+                     'upstream_license': {'tag': 'upstream_license',
+                                          'value': 'The MITRE Corporation (MITRE) '
+                                                   'hereby grants you a '
+                                                   'non-exclusive, royalty-free '
+                                                   'license to use D3FEND for '
+                                                   'research, development, and '
+                                                   'commercial purposes. Any copy '
+                                                   'you make for such purposes is '
+                                                   'authorized provided that you '
+                                                   "reproduce MITRE's copyright "
+                                                   'designation and this license '
+                                                   'in any such copy.'},
                      'upstream_release_date': {'tag': 'upstream_release_date',
                                                'value': '2026-08-31'},
                      'upstream_tag': {'tag': 'upstream_tag', 'value': '1.6.0'},

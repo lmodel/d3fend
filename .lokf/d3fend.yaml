@@ -24,6 +24,10 @@ annotations:
   upstream_commit: 91629abb966e
   upstream_release_date: '2026-08-31'
   upstream_copyright: Copyright 2022 The MITRE Corporation
+  upstream_license: The MITRE Corporation (MITRE) hereby grants you a non-exclusive, royalty-free license
+    to use D3FEND for research, development, and commercial purposes. Any copy you make for such purposes
+    is authorized provided that you reproduce MITRE's copyright designation and this license in any such
+    copy.
   upstream_terms: https://d3fend.mitre.org/tou
 comments:
 - The version is the edition of D3FEND the schema renders. upstream/ holds its Turtle file unchanged,

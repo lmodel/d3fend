@@ -40,6 +40,7 @@ owl:NamedIndividual dcterms:title "Individual" ;
 	skos:note "The version is the edition of D3FEND the schema renders. upstream/ holds its Turtle file unchanged, scripts/d3fend_to_linkml.py writes the catalogue and the slots from it, and scripts/check_upstream_release.py reports when it moves." ;
 	d3fend:upstream_commit "91629abb966e" ;
 	d3fend:upstream_copyright "Copyright 2022 The MITRE Corporation" ;
+	d3fend:upstream_license "The MITRE Corporation (MITRE) hereby grants you a non-exclusive, royalty-free license to use D3FEND for research, development, and commercial purposes. Any copy you make for such purposes is authorized provided that you reproduce MITRE's copyright designation and this license in any such copy." ;
 	d3fend:upstream_release_date "2026-08-31" ;
 	d3fend:upstream_tag "1.6.0" ;
 	d3fend:upstream_terms "https://d3fend.mitre.org/tou" .
