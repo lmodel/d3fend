@@ -2,6 +2,10 @@
 
 ## 2026-11-04
 
+* **Added**: What the data shows.
+* **Changed**: the join tables the SQL generator would write number about 4,800.
+* **Changed**: the Turtle states all but 23 of its restrictions as direct triples.
+* **Changed**: the wording on the types of reference.
 * **Added**: d3fend LinkML schema.
 * **Added**: Core module.
 * **Added**: Entries module.

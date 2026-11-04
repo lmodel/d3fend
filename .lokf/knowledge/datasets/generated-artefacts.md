@@ -20,7 +20,7 @@ sources:
   - resource: docs/schema
 generated:
   by: process:ktl-librarian
-  at: "2026-11-04T22:48:04Z"
+  at: "2026-11-04T23:03:24Z"
 status: draft
 ---
 
@@ -28,7 +28,7 @@ status: draft
 
 `project/` holds the JSON Schema, the JSON-LD context, OWL, SHACL, ShEx, GraphQL, Protobuf, Excel, Java and TypeScript forms of the schema, and `src/d3fend/datamodel/` the dataclasses and the Pydantic models.[^contributing.md]
 
-`.linkml/generators.yaml` holds the generators' settings. It turns the SQL generator off, since it would write about 4,600 join tables, and has the JSON Schema offer each concrete kind for an entry.[^generators.yaml]
+`.linkml/generators.yaml` holds the generators' settings. It turns the SQL generator off, since it would write about 4,800 join tables, and has the JSON Schema offer each concrete kind for an entry.[^generators.yaml]
 
 `tests/test_generated_json_schema.py` fails when the committed JSON Schema is not the generator's output.[^test_generated_json_schema.py]
 

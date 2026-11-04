@@ -17,7 +17,7 @@ sources:
     title: KINDS
 generated:
   by: process:ktl-librarian
-  at: "2026-11-04T22:48:04Z"
+  at: "2026-11-04T23:03:24Z"
 status: draft
 ---
 
@@ -27,7 +27,7 @@ An entry takes the first kind in the converter's table whose branch it sits unde
 
 `rdf_type` and `subclass_of` keep every parent the ontology states. The 874 ATT&CK Enterprise techniques and the 64 framework tactics are the terms with two such parents, and a test holds what they take.[^test_catalogue.py]
 
-The ten types of reference hold the same fields, so they are one kind, and `rdf_type` says which each is.[^about.md]
+The ten types of reference share their fields, so they are one kind, and `rdf_type` says which each is.[^about.md]
 
 [^about.md]: docs/about.md, How the kinds are chosen
 [^test_catalogue.py]: tests/test_catalogue.py, test_an_entry_under_two_branches_takes_the_stated_kind
