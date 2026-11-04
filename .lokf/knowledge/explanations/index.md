@@ -1,0 +1,8 @@
+# Explanations
+
+* [Why a term is a record](terms-as-records.md) - Why D3FEND's terms are records and not LinkML classes: D3FEND's own conventions pun its techniques as instances, its distribution states each class restriction again as a direct triple between terms, and most of its 4,465 classes are not types anyone instantiates.
+* [How the kinds are chosen](kinds-of-entry.md) - How a term gets its kind: the first in the converter's table whose branch it sits under, the deeper before its parent and D3FEND's own branches before the external ones, so that a term with two parents has one kind.
+* [What a slot may hold](what-a-slot-may-hold.md) - Which kinds hold which slots, and why most may hold any: the ontology states a domain for few of its properties, so no domain is invented. A literal slot holds one value where no term of this edition holds two.
+* [Mappings](mappings.md) - What the schema maps to and how each mapping is held: lmodel/attack, stix, cwe, capec and nist-sp-800-53 by their released copies, and SKOS and IAO because the ontology itself names them. The earlier guessed mappings are gone.
+* [RDF from the catalogue](rdf.md) - How the catalogue becomes RDF: every identifier is a CURIE, so both the JSON-LD context and LinkML's own dumper give a record's IRI and its relations as D3FEND's own. `rdfs:seeAlso` and `rdfs:isDefinedBy` project as text.
+* [What the schema does not cover](scope.md) - What the schema leaves out on purpose: D3FEND's classes as LinkML classes, the restrictions the edition does not obey, two leftover subjects of WebProtege, the SQL form, and any claim about whether what an entry says is true.
