@@ -4,7 +4,7 @@
 
 ## What this project is
 
-A LinkML schema of MITRE D3FEND 1.6.0, the knowledge graph of cybersecurity countermeasures. Each kind of entry is a class, each property of the ontology a slot under its own IRI, and every term of the edition a record in a catalogue that validates against them. [NOTICE](NOTICE) says whose work each part is.
+A LinkML schema of MITRE D3FEND 1.6.0, the knowledge graph of countermeasures: each kind of entry a class, each property a slot under its own IRI, and every term a record. [NOTICE](NOTICE) says whose work each part is.
 
 | Path | Holds |
 | --- | --- |
