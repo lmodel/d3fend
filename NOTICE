@@ -78,7 +78,7 @@ Terms of Use name as third-party:
   This project makes use of MITRE ATLAS. MITRE ATLAS and MITRE ATT&CK are a
   trademark and registered trademark of The MITRE Corporation. MITRE ATLAS
   content is subject to the ATLAS terms of use. The address D3FEND gives for them,
-  https://atlas.mitre.org/terms, did not answer on 2026-11-04. The repository
+  https://atlas.mitre.org/terms, answered 404 on 2026-11-04. The repository
   that publishes ATLAS's data, https://github.com/mitre-atlas/atlas-data, is under
   the Apache License, Version 2.0: Copyright 2021-2026 MITRE.
 

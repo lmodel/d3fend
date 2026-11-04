@@ -191,3 +191,61 @@ def test_the_header_projects_as_the_ontologys_own():
         assert str(graph.value(C.ONTOLOGY, predicate)) == str(
             _projected().value(C.ONTOLOGY, predicate)
         ), predicate
+
+
+def test_what_the_data_shows_and_the_ontology_does_not_say():
+    """What the file holds that its own definitions and declarations do not lead a reader
+    to expect. docs/about.md names these, and a later edition that fixes one fails here."""
+    entries = conversion.entries_by_id()
+    assert entries["d3f:CAPEC-663"]["capec_id"] == "CAPEC-553"
+    ids = collections.Counter(
+        e["d3fend_id"] for e in entries.values() if "d3fend_id" in e
+    )
+    assert sum(count > 1 for count in ids.values()) == 27
+    assert sum(e.get("has_link") == "" for e in entries.values()) == 3
+    assert (
+        entries["d3f:Reference-IntroducingFirefoxNewSiteIsolationArchitecture"][
+            "release_date"
+        ]
+        == "May 18, 2021"
+    )
+    two_labels = {i for i, e in entries.items() if len(e.get("label", ())) > 1}
+    assert two_labels == {
+        "d3f:CWE-1039",
+        "d3f:CWE-1188",
+        "d3f:CWE-1192",
+        "d3f:CWE-1302",
+    }
+    assert len(entries["d3f:T0821"]["skos_pref_label"]) == 2
+    assert len(entries["d3f:CreateProcess"]["definition"]) == 3
+    assert len(entries["d3f:PartialMatching"]["kb_article"]) == 2
+    self_typed = {
+        i
+        for i, e in entries.items()
+        if e["type"] == "D3fendDefensiveTechnique" and i in e.get("rdf_type", ())
+    }
+    assert len(self_typed) == 263
+    outside = {
+        i
+        for i, e in entries.items()
+        if "kb_abstract" in e and e["type"] != "D3fendTechniqueReference"
+    }
+    assert outside == {"d3f:UnsupervisedLearning"}
+    article = {
+        i
+        for i, e in entries.items()
+        if "kb_article" in e and not e["type"].endswith("Technique")
+    }
+    assert article == {
+        "d3f:SessionToken",
+        "d3f:WebIdentityToken",
+        "d3f:Reference-TrustedAttestationProtocolUseCases",
+    }
+    attack = collections.Counter(
+        e["type"] for e in entries.values() if "attack_id" in e
+    )
+    assert attack == {
+        "D3fendOffensiveTechnique": 858,
+        "D3fendThreatModelTechnique": 683,
+        "D3fendOffensiveTactic": 16,
+    }

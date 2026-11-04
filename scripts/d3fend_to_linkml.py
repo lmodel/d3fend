@@ -24,6 +24,7 @@ import argparse
 import re
 import sys
 from collections import defaultdict
+from functools import cache
 from pathlib import Path
 
 import rdflib
@@ -770,8 +771,10 @@ def _known_prop(graph: Graph, node) -> bool:
     return is_d3f(node) or node in EXTERNAL_SLOTS
 
 
+@cache
 def _objects_are_terms(graph: Graph, prop: URIRef) -> bool:
-    """Whether an annotation property's values all name D3FEND terms."""
+    """Whether a property's values all name D3FEND terms. Every record asks this of each
+    predicate it holds, so the answer is kept."""
     objects = list(graph.objects(None, prop))
     return bool(objects) and all(is_d3f(o) for o in objects)
 

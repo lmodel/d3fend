@@ -238,6 +238,16 @@ def test_names_apart_from_neighbours():
         assert slots.keys() & their_slots.keys() == SHARED_WITH_NEIGHBOURS[name], name
 
 
+def test_a_key_shared_with_a_neighbour_has_another_iri():
+    """The comment on SHARED_WITH_NEIGHBOURS and the README say so. A key under the same
+    IRI would mean the same thing, and would need no listing."""
+    _, slots = _names(COPY)
+    for name, shared in SHARED_WITH_NEIGHBOURS.items():
+        _, their_slots = _names(NEIGHBOUR_DIR / name)
+        for key in shared:
+            assert slots[key] != their_slots[key], (name, key)
+
+
 def test_the_copy_drops_and_renames_only_what_is_named():
     """The copy keeps each class and slot of the source, but for the keys it drops for
     LOKF's id and type and the keys it renames, and a renamed key keeps its IRI."""

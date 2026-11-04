@@ -7,7 +7,7 @@
 excludes:
   - markdown
   # Every kind of entry may hold every relation, and gen-sqlddl writes one join
-  # table per multivalued slot per class: about 4,600 tables, four minutes of a
+  # table per multivalued slot per class: about 4,800 tables, four minutes of a
   # five-minute run, for a graph nobody queries through those tables. The JSON-LD
   # context and the catalogue are the way to a graph database.
   - sqltable

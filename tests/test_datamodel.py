@@ -35,6 +35,7 @@ def test_the_whole_catalogue_loads_into_the_pydantic_models():
     """Each record loads as its own kind, with its relations."""
     model = d3fend_pydantic.D3fendCatalog(**conversion.catalogue())
     assert len(model.entries) == 5419
+    assert all(type(e).__name__ == e.type for e in model.entries)
     entry = next(e for e in model.entries if e.id == "d3f:FileAnalysis")
     assert type(entry).__name__ == "D3fendDefensiveTechnique"
     assert entry.analyzes == ["d3f:File"]
@@ -48,6 +49,7 @@ def test_the_whole_catalogue_loads_into_the_dataclasses():
         target_class=dataclasses_module.D3fendCatalog,
     )
     assert len(catalogue.entries) == 5419
+    assert all(type(e).__name__ == e.type for e in catalogue.entries)
     entry = next(e for e in catalogue.entries if e.id == "d3f:FileAnalysis")
     assert type(entry).__name__ == "D3fendDefensiveTechnique"
     assert list(entry.analyzes) == ["d3f:File"]

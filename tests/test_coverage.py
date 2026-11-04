@@ -171,6 +171,7 @@ def test_every_declared_property_is_a_slot_under_its_own_iri():
     """All 295 properties land, each once, and only the header's three as attributes."""
     declared = _declared()
     assert len(declared) == 295
+    assert len(_rendered_props()) == 292
     by_uri = {}
     for name, slot in _slots().items():
         if "slot_uri" in slot:
@@ -359,6 +360,39 @@ def test_a_literal_restriction_is_a_rule_only_where_the_edition_obeys_it(
         assert slot in C.KIND_RULES[kind]
     else:
         assert len(holds) < len(below) or not below, (class_name, local)
+
+
+def _held(class_name, local):
+    """How many individuals below a class hold a property, out of how many there are."""
+    graph = conversion.graph()
+    below = _individuals_below(class_name)
+    return sum((term, D3F[local], None) in graph for term in below), len(below)
+
+
+@pytest.mark.parametrize(
+    ("class_name", "local", "numbers"),
+    [
+        ("ATTACKEnterpriseMitigation", "d3fend-comment", (14, 42)),
+        ("CCIControl", "control-name", (0, 299)),
+        ("DefensiveTechnique", "d3fend-id", (271, 272)),
+        ("DefensiveTechnique", "date", (0, 272)),
+        ("Process", "process-identifier", (0, 23)),
+    ],
+)
+def test_the_numbers_that_keep_a_restriction_out(class_name, local, numbers):
+    """The numbers the comments above and docs/about.md give."""
+    assert _held(class_name, local) == numbers
+
+
+def test_a_narrow_slot_sits_on_its_kind_and_a_wide_one_on_the_base():
+    """The two examples docs/about.md gives: has_input is on the event alone, since D3FEND
+    states that domain and the edition obeys it. attack_id stays on the base, since the
+    edition goes beyond its stated domain, and a comment says so."""
+    classes = conversion.module()["classes"]
+    assert "has_input" in classes["D3fendEvent"]["slots"]
+    assert "has_input" not in classes["D3fendEntry"]["slots"]
+    assert "attack_id" in classes["D3fendEntry"]["slots"]
+    assert "outside" in _slots()["attack_id"]["comments"][0]
 
 
 def test_each_rule_in_the_schema_is_one_listed_above():

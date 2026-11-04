@@ -23,7 +23,7 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 - **A class of the ontology is a record, not a LinkML class**, and an individual is a record, not an enum value. So 4,366 classes and 33 enums become 22 kinds and one enum.
 - **Slots take snake_case names and keep their IRIs**, and a relation ranges over the entry base or a narrower kind, not over strings.
 - **The template moves to linkml-project-copier v0.5.0**, linkml and linkml-runtime are locked at 1.12.1, and the Python project is named `d3fend-linkml`. PyPI publishing and the docs preview are off.
-- **The generators' settings move to `.linkml/generators.yaml`**, and the SQL generator is off, since it would write about 4,600 join tables.
+- **The generators' settings move to `.linkml/generators.yaml`**, and the SQL generator is off, since it would write about 4,800 join tables.
 
 ### Removed
 
