@@ -10,7 +10,7 @@ excludes:
   # table per multivalued slot per class: about 4,600 tables, four minutes of a
   # five-minute run, for a graph nobody queries through those tables. The JSON-LD
   # context and the catalogue are the way to a graph database.
-  - sqlddl
+  - sqltable
 
 # Alternatively only specify the generators to run
 # (comment out the above "excludes" section)

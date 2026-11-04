@@ -1,0 +1,62 @@
+---
+id: https://w3id.org/lmodel/d3fend/d3fend_core
+name: d3fend_core
+title: D3FEND core
+description: The value types and the one list this project's schema of D3FEND shares across its modules.
+version: "1.6.0"
+source: https://d3fend.mitre.org/ontologies/d3fend/1.6.0/d3fend.ttl
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/d3fend
+  - https://d3fend.mitre.org/
+prefixes:
+  d3fend: https://w3id.org/lmodel/d3fend/
+  linkml: https://w3id.org/linkml/
+  owl: http://www.w3.org/2002/07/owl#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: d3fend
+default_range: string
+
+imports:
+  - linkml:types
+
+types:
+
+  d3fend_date_time:
+    title: Date Time
+    description: A date and time as the ontology writes it, which may carry no time zone.
+    typeof: string
+    uri: xsd:dateTime
+    pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(Z|[+-][0-9]{2}:[0-9]{2})?$"
+    comments:
+      - >-
+        LinkML's datetime type asks a JSON Schema format checker for a time zone, which most of
+        D3FEND's values do not have.
+
+  d3fend_uri:
+    title: Address
+    description: An address as the ontology writes it, typed xsd:anyURI.
+    typeof: string
+    uri: xsd:anyURI
+    comments:
+      - >-
+        LinkML's uri type asks a JSON Schema format checker for a valid address, and three of
+        D3FEND's has-link values are empty strings.
+
+enums:
+
+  D3fendOwlKind:
+    title: OWL Kind
+    description: How the ontology declares a term.
+    permissible_values:
+      class:
+        title: Class
+        description: The term is an owl:Class only.
+        meaning: owl:Class
+      individual:
+        title: Individual
+        description: The term is an owl:NamedIndividual only.
+        meaning: owl:NamedIndividual
+      class_and_individual:
+        title: Class and Individual
+        description: The term is punned, both an owl:Class and an owl:NamedIndividual.

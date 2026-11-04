@@ -164,7 +164,9 @@ def check_pinned() -> tuple[list[str], bool]:
             f"- **{PINNED_SOURCE} changed.** Read what changed, then move upstream/ and "
             "the pin, or find out why a published edition moved."
         ], True
-    return [f"- The versioned Turtle file of {PINNED_EDITION} is the pinned file."], False
+    return [
+        f"- The versioned Turtle file of {PINNED_EDITION} is the pinned file."
+    ], False
 
 
 def check_licence() -> tuple[list[str], bool]:
