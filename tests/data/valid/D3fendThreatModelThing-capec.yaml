@@ -1,0 +1,13 @@
+# Record d3f:CAPEC-663 of D3FEND 1.6.0.
+id: d3f:CAPEC-663
+type: D3fendThreatModelThing
+owl_kind: class_and_individual
+rdf_type:
+  - d3f:CommonAttackPattern
+subclass_of:
+  - d3f:CommonAttackPattern
+capec_id: CAPEC-553
+is_defined_by:
+  - https://capec.mitre.org/data/definitions/663.html
+label:
+  - Exploitation of Transient Instruction Execution

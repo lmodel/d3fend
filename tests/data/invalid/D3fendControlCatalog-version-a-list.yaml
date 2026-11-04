@@ -1,0 +1,7 @@
+# Fails at: /version
+# The ontology allows an integer or a string.
+id: d3f:NIST_SP_800-53_R5
+type: D3fendControlCatalog
+owl_kind: individual
+version:
+  - 5

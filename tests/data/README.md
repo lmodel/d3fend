@@ -1,14 +1,9 @@
 # Example data for d3fend
 
-This folder contains example data for testing and demonstrating the datamodel`
-sorted in subfolders:
+- `valid/` holds an example of each class. Most are real records of D3FEND 1.6.0, each naming the term it comes from, and a few are written from the schema to show a slot no record of this edition uses. `linkml-run-examples` and `tests/test_data.py` read this folder.
+- `invalid/` holds a counter-example for each constraint the validator can state. Each file's first line, `# Fails at: <JSON pointer>`, names its one failing place, and `tests/test_data.py` holds it there.
+- `problem/invalid/` holds a counter-example for each rule the generated JSON Schema cannot state, which `tests/d3fend_rules.py` checks over a whole catalogue.
 
-- `valid` for data conforming to the datamodel. Used to verify the datamodel.
-- `invalid` for data not conforming to the datamodel. Used to verify the validation.
-- `problem` for data which are not yet handled correctly in the current schema version,
-   again separated into valid/invalid.
+A file name is `ClassName-anything.yaml`, and the class is the part before the first hyphen. The whole catalogue is `src/d3fend/data/d3fend-1.6.0.yaml`, and `tests/test_catalogue.py` validates it.
 
-The filenames of all example data must conform to the scheme `classname-###.yaml`
-where classname must be a the name of a class from the schema. "###" can be a number
-or one or more other characters allowed in filenames. The classname is derived by
-splitting at the first "-" and taking the part before the "-".
+The real records are copies under MITRE's Terms of Use: Copyright 2022 The MITRE Corporation. See [NOTICE](../../NOTICE).

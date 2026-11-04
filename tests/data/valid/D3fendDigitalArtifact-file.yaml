@@ -1,0 +1,17 @@
+# Record d3f:File of D3FEND 1.6.0.
+id: d3f:File
+type: D3fendDigitalArtifact
+owl_kind: class_and_individual
+subclass_of:
+  - d3f:Resource
+definition:
+  - A file maintained in computer-readable form.
+label:
+  - File
+see_also:
+  - http://wordnet-rdf.princeton.edu/id/06521201-n
+contains:
+  - d3f:FileSection
+may_contain:
+  - d3f:File
+  - d3f:URL

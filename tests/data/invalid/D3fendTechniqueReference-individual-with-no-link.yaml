@@ -1,0 +1,6 @@
+# Fails at: /
+# A class restriction says a reference holds a link, and every individual does.
+id: d3f:Reference-X
+type: D3fendTechniqueReference
+owl_kind: individual
+kb_reference_title: A title

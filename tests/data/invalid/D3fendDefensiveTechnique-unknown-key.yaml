@@ -1,0 +1,6 @@
+# Fails at: /
+# Each class is closed, and the property is spelled analyzes.
+id: d3f:FileAnalysis
+type: D3fendDefensiveTechnique
+analyses:
+  - d3f:File

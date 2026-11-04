@@ -1,0 +1,16 @@
+# Record d3f:Reference-MethodAndSystemForControllingCommunicationPorts of D3FEND 1.6.0.
+id: d3f:Reference-MethodAndSystemForControllingCommunicationPorts
+type: D3fendTechniqueReference
+owl_kind: individual
+rdf_type:
+  - d3f:PatentReference
+has_link: https://patents.google.com/patent/US8566924
+kb_abstract: A method for limiting devices and controlling the applications executed from USB ports on
+  personal computers (PCs).
+kb_author: Steven V Bacastow
+kb_organization: OL Security LLC
+kb_reference_title: Method and system for controlling communication ports
+label:
+  - Reference - Method and system for controlling communication ports
+kb_reference_of:
+  - d3f:IOPortRestriction

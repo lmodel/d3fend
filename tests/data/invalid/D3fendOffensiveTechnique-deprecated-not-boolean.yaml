@@ -1,0 +1,4 @@
+# Fails at: /deprecated
+id: d3f:T1015
+type: D3fendOffensiveTechnique
+deprecated: 'yes'

@@ -1,0 +1,5 @@
+# Fails at: /risk_impact
+# The ontology bounds the rating from 1 to 5.
+id: d3f:Plan
+type: D3fendThing
+risk_impact: 0

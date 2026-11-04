@@ -1,0 +1,4 @@
+# Fails at: /display_order
+id: d3f:Harden
+type: D3fendDefensiveTactic
+display_order: first

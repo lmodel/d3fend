@@ -1,0 +1,15 @@
+# Record d3f:FileEvent of D3FEND 1.6.0.
+id: d3f:FileEvent
+type: D3fendEvent
+owl_kind: class_and_individual
+subclass_of:
+  - d3f:DigitalEvent
+definition:
+  - An event involving operations performed on digital files, encompassing actions such as creation, modification,
+    deletion, access, and attribute or permission changes.
+label:
+  - File Event
+see_also:
+  - https://schema.ocsf.io/classes/file_activity
+has_participant:
+  - d3f:File

@@ -1,0 +1,13 @@
+# Fails at: /entries/1/has_input/0
+# has_input ranges over artifacts, as D3FEND declares.
+ontology_iri: http://d3fend.mitre.org/ontologies/d3fend.owl
+version_info: 1.6.0
+entries:
+  - id: d3f:Detect
+    type: D3fendDefensiveTactic
+    owl_kind: class
+  - id: d3f:FileEvent
+    type: D3fendEvent
+    owl_kind: class
+    has_input:
+      - d3f:Detect

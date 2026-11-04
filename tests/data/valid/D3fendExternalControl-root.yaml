@@ -1,0 +1,12 @@
+# Record d3f:ExternalControl of D3FEND 1.6.0.
+id: d3f:ExternalControl
+type: D3fendExternalControl
+owl_kind: class
+subclass_of:
+  - d3f:ExternalControlThing
+label:
+  - External Control
+member_of:
+  - d3f:ControlCatalog
+semantic_relation:
+  - d3f:DefensiveTechnique

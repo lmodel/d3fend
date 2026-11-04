@@ -1,0 +1,21 @@
+# Record d3f:CWE-79 of D3FEND 1.6.0.
+id: d3f:CWE-79
+type: D3fendWeakness
+owl_kind: class_and_individual
+subclass_of:
+  - d3f:CWE-74
+cwe_id: CWE-79
+definition:
+  - The product does not neutralize or incorrectly neutralizes user-controllable input before it is placed
+    in output that is used as a web page that is served to other users.
+label:
+  - Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
+synonym:
+  - CSS
+  - DOM-Based XSS / Type 0 XSS
+  - HTML Injection
+  - Reflected XSS / Non-Persistent XSS / Type 1 XSS
+  - Stored XSS / Persistent XSS / Type 2 XSS
+  - XSS
+weakness_of:
+  - d3f:UserInputFunction

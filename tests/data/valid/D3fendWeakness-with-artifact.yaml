@@ -1,0 +1,5 @@
+# Written from the schema, to show a slot that only a weakness holds.
+id: d3f:CWE-79
+type: D3fendWeakness
+may_be_weakness_of:
+  - d3f:File

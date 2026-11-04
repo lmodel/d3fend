@@ -1,0 +1,9 @@
+# Record d3f:PatentReference of D3FEND 1.6.0.
+id: d3f:PatentReference
+type: D3fendTechniqueReference
+owl_kind: class
+subclass_of:
+  - d3f:TechniqueReference
+label:
+  - Patent Reference
+pref_label: Patent

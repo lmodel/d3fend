@@ -1,0 +1,14 @@
+# Record d3f:NIST_SP_800-53_R5_AC-2_1 of D3FEND 1.6.0.
+id: d3f:NIST_SP_800-53_R5_AC-2_1
+type: D3fendNistControl
+owl_kind: individual
+rdf_type:
+  - d3f:NISTControl
+control_name: Account Management | Automated System Account Management
+label:
+  - AC-2(1)
+broader:
+  - d3f:AccountLocking
+  - d3f:Multi-factorAuthentication
+member_of:
+  - d3f:NIST_SP_800-53_R5

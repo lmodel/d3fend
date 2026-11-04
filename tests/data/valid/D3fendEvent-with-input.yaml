@@ -1,0 +1,7 @@
+# Written from the schema: no record of this edition holds has_input or has_output.
+id: d3f:FileEvent
+type: D3fendEvent
+has_input:
+  - d3f:File
+has_output:
+  - d3f:File

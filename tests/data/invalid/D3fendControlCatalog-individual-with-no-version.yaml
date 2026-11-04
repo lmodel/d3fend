@@ -1,0 +1,5 @@
+# Fails at: /
+# A class restriction says a catalog holds a version, and every individual does.
+id: d3f:NIST_SP_800-53_R5
+type: D3fendControlCatalog
+owl_kind: individual

@@ -1,0 +1,5 @@
+# Fails at: /
+# D3FEND declares that domain as TechniqueReference.
+id: d3f:Plan
+type: D3fendThing
+kb_author: A person

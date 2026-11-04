@@ -1,0 +1,20 @@
+# Record d3f:CCI-000015_v2022-04-05 of D3FEND 1.6.0.
+id: d3f:CCI-000015_v2022-04-05
+type: D3fendCciControl
+owl_kind: individual
+rdf_type:
+  - d3f:CCIControl
+contributor:
+  - d3f:DISA_FSO
+definition:
+  - The organization employs automated mechanisms to support the information system account management
+    functions.
+label:
+  - CCI-000015
+published: '2009-05-13T00:00:00'
+broader:
+  - d3f:AccountLocking
+  - d3f:DomainAccountMonitoring
+  - d3f:LocalAccountMonitoring
+member_of:
+  - d3f:CCICatalog_v2022-04-05

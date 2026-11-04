@@ -1,0 +1,6 @@
+# Fails at: /
+# D3FEND declares that domain as Artifact.
+id: d3f:FileEvent
+type: D3fendEvent
+may_have_weakness:
+  - d3f:CWE-79

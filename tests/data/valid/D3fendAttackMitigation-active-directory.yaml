@@ -1,0 +1,13 @@
+# Record d3f:M1015 of D3FEND 1.6.0.
+id: d3f:M1015
+type: D3fendAttackMitigation
+owl_kind: individual
+rdf_type:
+  - d3f:ATTACKEnterpriseMitigation
+d3fend_comment: M1015 scope is broad, touches on an wide variety of techniques in D3FEND.
+label:
+  - Active Directory Configuration
+related:
+  - d3f:AuthenticationCacheInvalidation
+  - d3f:DomainTrustPolicy
+  - d3f:UserAccountPermissions

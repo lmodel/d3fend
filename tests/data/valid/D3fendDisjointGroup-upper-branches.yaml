@@ -1,0 +1,8 @@
+# One group of D3FEND 1.6.0: its six upper branches.
+members:
+  - d3f:Agent
+  - d3f:Artifact
+  - d3f:Event
+  - d3f:Goal
+  - d3f:Plan
+  - d3f:Weakness

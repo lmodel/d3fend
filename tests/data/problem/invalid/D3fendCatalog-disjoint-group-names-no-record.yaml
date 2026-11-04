@@ -1,0 +1,12 @@
+# Fails at: /disjoint_groups/0/members/0
+# A disjoint group names a record the catalogue does not hold.
+ontology_iri: http://d3fend.mitre.org/ontologies/d3fend.owl
+version_info: 1.6.0
+disjoint_groups:
+  - members:
+      - d3f:Folder
+      - d3f:File
+entries:
+  - id: d3f:File
+    type: D3fendDigitalArtifact
+    owl_kind: class

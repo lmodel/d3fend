@@ -1,0 +1,10 @@
+# Fails at: /entries/0/subclass_of/0
+# A subclass names a parent the catalogue does not hold.
+ontology_iri: http://d3fend.mitre.org/ontologies/d3fend.owl
+version_info: 1.6.0
+entries:
+  - id: d3f:File
+    type: D3fendDigitalArtifact
+    owl_kind: class
+    subclass_of:
+      - d3f:Resource
