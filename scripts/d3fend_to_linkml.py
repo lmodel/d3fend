@@ -92,6 +92,12 @@ KINDS = (
     ("D3fendThing", "D3fendEntry", ()),
 )
 
+# The D3FEND class at the root of each kind whose class_uri names one.
+KIND_ROOTS = {
+    "D3fendThreatModelThing": "ExternalThreatModelThing",
+    **{kind: roots[0] for kind, _parent, roots in KINDS if len(roots) == 1},
+}
+
 # What the class says about itself, in this project's words. The class_uri is D3FEND's
 # class where one means the same; D3fendThing and D3fendThreatModelTechnique group several
 # of D3FEND's branches, so they keep this project's namespace.
