@@ -1,0 +1,27 @@
+LICENSE
+
+The MITRE Corporation (MITRE) hereby grants you a non-exclusive, royalty-free license to use D3FEND for research, development, and commercial purposes. Any copy you make for such purposes is authorized provided that you reproduce MITRE's copyright designation and this license in any such copy.
+
+DISCLAIMERS
+
+ALL DOCUMENTS AND THE INFORMATION CONTAINED THEREIN ARE PROVIDED ON AN "AS IS" BASIS AND THE CONTRIBUTOR, THE ORGANIZATION HE/SHE REPRESENTS OR IS SPONSORED BY (IF ANY), THE MITRE CORPORATION, ITS BOARD OF TRUSTEES, OFFICERS, AGENTS, AND EMPLOYEES, DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION THEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+THIRD-PARTY LICENSES
+
+This project makes use of MITRE ATT&CK®.
+
+MITRE ATT&CK® and ATT&CK® are registered trademarks of The MITRE Corporation. MITRE ATT&CK content is subject to the MITRE ATT&CK terms of use (https://attack.mitre.org/resources/terms-of-use/).
+
+This project makes use of MITRE ATLAS™.
+
+MITRE ATLAS™ and MITRE ATT&CK® are a trademark and registered trademark of The MITRE Corporation. MITRE ATLAS content is subject to the ATLAS terms of use (https://atlas.mitre.org/terms).
+
+This project makes use of the Aerospace SPARTA ®.
+
+©2023 The Aerospace Corporation. This work is reproduced and distributed with the permission of The Aerospace Corporation.
+
+SPARTA® Terms of Service - https://sparta.aerospace.org/terms-of-service (https://sparta.aerospace.org/terms-of-service)
+
+License
+
+The Aerospace Corporation hereby grants you a non-exclusive, royalty-free license to use SPARTA for research, development, and commercial purposes. Any copy you make for such purposes is authorized provided that you reproduce Aerospace's copyright designation and this license in any such copy.
