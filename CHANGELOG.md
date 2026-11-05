@@ -9,8 +9,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 ### Added
 
 - **A LinkML model of MITRE D3FEND 1.6.0 as a catalogue with typed relations**, as an umbrella over `d3fend_core` and `d3fend_entries`. The 22 kinds of entry are classes under the abstract `D3fendEntry`, every property of the ontology is a slot under its own IRI, and all 5,419 terms are records in `src/d3fend/data/d3fend-1.6.0.yaml`. The catalogue leaves out the 340 abstracts of cited sources, which stay in MITRE's file alone.
-- **`scripts/d3fend_to_linkml.py`**, the one fixed step from MITRE's Turtle file to the slots, the kinds and the catalogue, which stops on a predicate it does not know.
-- **The relations that make D3FEND what it is.** Each of the 1,939 class restrictions that names a term is a value of its record's slot, where the old schema held none of them.
+- **`scripts/d3fend_to_linkml.py`**, the one fixed step from MITRE's Turtle file to the slots, the kinds and the catalogue. It stops on a predicate it does not know.
+- **The relations that make D3FEND what it is.** Each of the 1,939 class restrictions that names a term is a value of its record's slot. The old schema held none of them.
 - **A test that walks the Turtle in both directions**, a test that the whole catalogue validates and gives back the Turtle's triples through JSON-LD, and `tests/d3fend_rules.py` for what JSON Schema cannot state.
 - **A weekly upstream watch** that reports a new edition, a changed file, a changed licence, or changed Terms of Use.
 - **Mappings to lmodel/attack, lmodel/stix, lmodel/cwe, lmodel/capec and lmodel/nist-sp-800-53**, each held by a test to a released copy, and to the ten SKOS, IAO, BFO and Common Core Ontologies properties the ontology itself names as `rdfs:isDefinedBy`.

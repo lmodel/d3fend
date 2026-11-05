@@ -40,12 +40,12 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 ## Before opening a pull request
 
 - **Edit the source, then regenerate.** Edit `scripts/d3fend_to_linkml.py` or the two hand-written schema files, run `just gen-schema`, `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `src/d3fend/schema/d3fend_entries.yaml`, `src/d3fend/data/`, `project/`, `src/d3fend/datamodel/`, `docs/schema/` and `.lokf/d3fend.yaml` are generated.
-- **Keep the ontology's IRIs.** A slot carries its property's IRI as `slot_uri`, and a record its term's IRI as `id`. `tests/test_coverage.py` walks the Turtle in `upstream/` and fails on anything that lands nowhere; what stays out is listed there with its reason.
+- **Keep the ontology's IRIs.** A slot carries its property's IRI as `slot_uri`, and a record its term's IRI as `id`. `tests/test_coverage.py` walks the Turtle in `upstream/` and fails on anything it does not render, unless it is listed there with its reason.
 - **State only what the upstream states.** No bound or rule of your own. What JSON Schema cannot check is in `tests/d3fend_rules.py`, and what the data merely shows stays in `tests/test_catalogue.py`.
 - **A mapping is read at its source.** `tests/test_mappings.py` holds each one to a neighbour copy or to what the ontology itself states. A term with no sure match stays unmapped.
 - **Render the pinned edition.** `tests/test_upstream.py` holds the schema header, `scripts/check_upstream_release.py` and `upstream/` equal.
 - **Keep names apart.** A host imports this adapt copy beside the Linked Open Knowledge Format (LOKF) schema and the released copies in `tests/neighbours/`. `tests/test_schema_rules.py` checks this.
-- **Run the tests**: `just test` (schema generation, `pytest` and the examples under `tests/data/`). Example data goes in `tests/data/valid/` and `tests/data/invalid/`, named `ClassName-suffix.yaml`; an invalid example's first line, `# Fails at: <pointer>`, names where it fails.
+- **Run the tests**: `just test` (schema generation, `pytest` and the examples under `tests/data/`). Example data goes in `tests/data/valid/` and `tests/data/invalid/`, named `ClassName-suffix.yaml`. An invalid example's first line, `# Fails at: <pointer>`, names where it fails.
 - **Follow the schema's conventions**: PascalCase classes and enums with the `D3fend` prefix, snake_case slots, and a short description on every element. `just lint` checks, under `.linkmllint.yaml`.
 - **Run the pre-commit hooks** on what you staged (`uvx pre-commit run`).
 - **Lock files are part of the change.** CI installs with `uv sync --locked`, so an edit without its `uv.lock` (or `.lokf/uv.lock`) fails.
@@ -61,7 +61,7 @@ Participation here is covered by the [Contributor Covenant](CODE_OF_CONDUCT.md).
 
 ## Using AI tools
 
-Artificial intelligence (AI) assistance is welcome; [AI_COVENANT.md](AI_COVENANT.md) sets the rules, for people and the scheduled `knowledge-librarian` agent alike.
+Artificial intelligence (AI) assistance is welcome. [AI_COVENANT.md](AI_COVENANT.md) sets the rules, for people and the scheduled `knowledge-librarian` agent alike.
 
 ## Reporting issues
 
@@ -78,4 +78,4 @@ Use the [issue tracker](https://github.com/lmodel/d3fend/issues) for the schema.
 
 ## License
 
-By contributing, you agree that your contributions are licensed under the [Apache License 2.0](LICENSE). The upstream's files are under their own terms; [NOTICE](NOTICE) says what they allow. Update it when you add something from elsewhere.
+By contributing, you agree that your contributions are licensed under the [Apache License 2.0](LICENSE). The upstream's files are under their own terms, and [NOTICE](NOTICE) says what they allow. Update it when you add something from elsewhere.

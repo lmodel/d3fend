@@ -57,7 +57,7 @@ D3fendAgent, D3fendAnalyticTechnique, D3fendArtifact, D3fendAttackDataSource, D3
 
 The copy drops `id`, `type` and `rdf_type` for LOKF's `id` and `type`. It renames `created`, `definition`, `description`, `name`, `title` and `version` with a `d3fend_` prefix, keeping their IRIs, because LOKF has slots of those names. A concept names a D3FEND term in a relation by its CURIE, such as `analyzes: [d3f:File]`.
 
-No class, enum or type is a neighbour's, since each carries the `D3fend` prefix. D3FEND's properties are ordinary words, so the copy shares a few keys with oscal, attack, stix, nist-nvd, uco, spdx and slsa, under other IRIs, which `tests/test_schema_rules.py` lists. A composite projects each under one IRI until `lokf adapt` can rename what a neighbour copy defines (lokf #169).
+Every class, enum and type carries the `D3fend` prefix, so none is a neighbour's. D3FEND's properties are ordinary words, so the copy shares a few keys with oscal, attack, stix, nist-nvd, uco, spdx and slsa, under other IRIs, which `tests/test_schema_rules.py` lists. A composite projects each under one IRI until `lokf adapt` can rename what a neighbour copy defines (lokf #169).
 
 ## License
 
@@ -67,10 +67,7 @@ D3FEND is under its Terms of Use and its repository's MIT licence, and `upstream
 
 ## Contributing and security
 
-[CONTRIBUTING.md](CONTRIBUTING.md) is the checklist for pull requests and
-releases, [AI_COVENANT.md](AI_COVENANT.md) sets the rules for AI-assisted work,
-[SECURITY.md](SECURITY.md) says how to report a vulnerability, and
-[CHANGELOG.md](CHANGELOG.md) records the changes.
+[CONTRIBUTING.md](CONTRIBUTING.md) is the checklist for pull requests and releases, [AI_COVENANT.md](AI_COVENANT.md) sets the rules for AI-assisted work, [SECURITY.md](SECURITY.md) says how to report a vulnerability, and [CHANGELOG.md](CHANGELOG.md) records the changes.
 
 ## Credits
 

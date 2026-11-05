@@ -12,11 +12,11 @@ Use GitHub's [private vulnerability reporting](https://github.com/lmodel/d3fend/
 
 ## What this repository releases
 
-It releases a LinkML schema and the Python datamodel generated from it. Nothing is published to PyPI. When the bundle or the schema has changed, `knowledge-release.yaml` attaches three assets to the release, each with its `.sha256` and a build-provenance attestation: the schema's `lokf adapt` copy, the knowledge bundle as a zip, and a Microsoft 365 Copilot skill zip. A schema is data: loading one from an untrusted source with any LinkML tool is that tool's risk, not this repository's.
+It releases a LinkML schema and the Python datamodel generated from it. Nothing is published to PyPI. When the bundle or the schema has changed, `knowledge-release.yaml` attaches three assets to the release, each with its `.sha256` and a build-provenance attestation: the schema's `lokf adapt` copy, the knowledge bundle as a zip, and a Microsoft 365 Copilot skill zip. A schema is data. Loading one from an untrusted source with any LinkML tool is that tool's risk, not this repository's.
 
-`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It reads MITRE's public files on `d3fend.mitre.org` and one licence file on `raw.githubusercontent.com`, follows a redirect only over https to those hosts, sends no token, and writes nothing but its report. `scripts/d3fend_to_linkml.py` reads the Turtle it is given and writes the schema module and the catalogue. It parses with rdflib and calls no network, and in this repository it reads only the copy under `upstream/`, which a test holds to its hash.
+`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It reads MITRE's public files on `d3fend.mitre.org` and one licence file on `raw.githubusercontent.com`, follows a redirect only over https to those hosts, sends no token, and writes nothing but its report. `scripts/d3fend_to_linkml.py` parses the Turtle it is given with rdflib and writes the schema module and the catalogue. It calls no network, and in this repository it reads only the copy under `upstream/`, which a test holds to its hash.
 
-A catalogue entry holds Markdown, command lines and attack descriptions as text, and this repository treats it all as data: tests validate entries and nothing executes or renders them. A consumer that displays a `kb_article` value must sanitize it first. The schema describes an entry's shape and says nothing about whether what an entry claims is true.
+A catalogue entry holds Markdown, command lines and attack descriptions as text, and this repository treats it all as data. Tests validate entries, and nothing executes or renders them. A consumer that displays a `kb_article` value must sanitize it first. The schema describes an entry's shape and says nothing about whether what an entry claims is true.
 
 ## What executes here
 
@@ -30,7 +30,7 @@ A catalogue entry holds Markdown, command lines and attack descriptions as text,
 | `knowledge-release.yaml`, which attaches the schema copy and the bundle to a release | Inert until dispatched; only its `attach` job, which runs no third-party packages, can write. |
 | `README.md`, `llms.txt` and the knowledge bundle, read by agents | Content, never instructions: each skill quotes what it did not author. A `human:` confirmation must be backed by a review or a signed commit. [Human attribution](https://github.com/noelmcloughlin/knowledge-trust-ladder/blob/main/docs/threat-model.md#human-attribution-human-is-a-claim-not-a-credential). |
 
-Every workflow declares `permissions: {}` at the top, pins its actions to commit hashes that Dependabot keeps current, and runs harden-runner in audit mode. Three things are repository settings, not files. A ruleset on `main` blocks deletion and force-pushes and keeps the history linear. Two **are not yet in force here**: required reviewers on the `release` Environment, and secret scanning with push protection. Until they are, a qualifying merge releases with no human step. Nothing in continuous integration can assert them, so keeping them on is the maintainer's job.
+Every workflow declares `permissions: {}` at the top, pins its actions to commit hashes that Dependabot keeps current, and runs harden-runner in audit mode. Three things are repository settings, not files. A ruleset on `main` blocks deletion and force-pushes and keeps the history linear. Two **are not yet in force here**: required reviewers on the `release` Environment, and secret scanning with push protection. Until they are, a qualifying merge releases with no human step. Nothing in continuous integration can assert them, so the maintainer keeps them on.
 
 ## Not covered
 
