@@ -929,7 +929,10 @@ class D3fendEntry(ConfiguredBaseModel):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -2498,7 +2501,10 @@ class D3fendThing(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -4070,7 +4076,10 @@ class D3fendThreatModelThing(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -5645,7 +5654,10 @@ class D3fendThreatModelTechnique(D3fendThreatModelThing):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -7218,7 +7230,10 @@ class D3fendAttackDataSource(D3fendThreatModelThing):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -8791,7 +8806,10 @@ class D3fendAttackMitigation(D3fendThreatModelThing):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -10372,7 +10390,10 @@ class D3fendControlCatalog(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -11944,7 +11965,10 @@ class D3fendExternalControl(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -13525,7 +13549,10 @@ class D3fendCciControl(D3fendExternalControl):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -15099,7 +15126,10 @@ class D3fendNistControl(D3fendExternalControl):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -16697,7 +16727,10 @@ class D3fendTechniqueReference(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -18269,7 +18302,10 @@ class D3fendAgent(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -19861,7 +19897,10 @@ class D3fendEvent(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -21459,7 +21498,10 @@ class D3fendArtifact(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -23062,7 +23104,10 @@ class D3fendDigitalArtifact(D3fendArtifact):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -24643,7 +24688,10 @@ class D3fendWeakness(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -26224,7 +26272,10 @@ class D3fendTechnique(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -27805,7 +27856,10 @@ class D3fendAnalyticTechnique(D3fendTechnique):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -29387,7 +29441,10 @@ class D3fendOffensiveTechnique(D3fendTechnique):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -30968,7 +31025,10 @@ class D3fendDefensiveTechnique(D3fendTechnique):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -32540,7 +32600,10 @@ class D3fendGoal(D3fendEntry):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -34113,7 +34176,10 @@ class D3fendOffensiveTactic(D3fendGoal):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })
@@ -35685,7 +35751,10 @@ class D3fendDefensiveTactic(D3fendGoal):
                                           'value': 'annotation'}},
          'comments': ['D3FEND declares the domain d3f:TechniqueReference, but this '
                       'edition also uses the property outside it, so every kind may '
-                      'hold this slot.'],
+                      'hold this slot.',
+                      "The catalogue leaves this property's values out: they quote the "
+                      "sources D3FEND cites, and those words are their authors'. "
+                      "upstream/d3fend.ttl, MITRE's file unchanged, holds every one."],
          'domain_of': ['D3fendEntry'],
          'is_a': 'd3fend_kb_reference_annotation',
          'slot_uri': 'd3f:kb-abstract'} })

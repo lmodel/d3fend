@@ -156,15 +156,17 @@ def _subject_triples(graph, subjects):
 
 
 def test_the_json_ld_projection_reproduces_the_turtle():
-    """Each triple of the Turtle about a term comes back from the catalogue, and the
-    only extra triples are the class restrictions that have no direct triple. Objects
-    compare by their lexical form, since LinkML writes rdfs:seeAlso and rdfs:isDefinedBy
-    as text."""
+    """Each triple of the Turtle about a term comes back from the catalogue, but for the
+    340 abstracts the catalogue leaves out, and the only extra triples are the class
+    restrictions that have no direct triple. Objects compare by their lexical form, since
+    LinkML writes rdfs:seeAlso and rdfs:isDefinedBy as text."""
     graph = conversion.graph()
     entries = C.entry_subjects(graph)
     upstream = _subject_triples(graph, entries)
     projected = _subject_triples(_projected(), entries)
-    assert upstream - projected == set()
+    left_out = {t for t in upstream if t[1] in C.LEFT_OUT}
+    assert len(left_out) == 340
+    assert upstream - projected == left_out
     restrictions = {
         (entry, prop, str(target))
         for entry in entries
@@ -226,9 +228,9 @@ def test_what_the_data_shows_and_the_ontology_does_not_say():
     }
     assert len(self_typed) == 263
     outside = {
-        i
-        for i, e in entries.items()
-        if "kb_abstract" in e and e["type"] != "D3fendTechniqueReference"
+        C.curie(s)
+        for s in conversion.graph().subjects(C.D3F["kb-abstract"], None)
+        if entries[C.curie(s)]["type"] != "D3fendTechniqueReference"
     }
     assert outside == {"d3f:UnsupervisedLearning"}
     article = {

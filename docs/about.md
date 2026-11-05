@@ -65,6 +65,8 @@ D3FEND's classes are not LinkML classes, as above. A host that wants a concept o
 
 A record does not tell a class restriction from a direct triple: both are values of one slot. `upstream/d3fend.ttl` keeps the difference, and no reasoner ran, so a value is one the file states and not one it implies.
 
+The 340 values of `kb_abstract` stay out of the catalogue. They quote the patents, papers, articles and manuals D3FEND cites, so those words are their authors', and `upstream/d3fend.ttl` alone holds them. The slot stays, so the schema renders the property and a host may hold an abstract of its own.
+
 `tests/test_coverage.py` lists the rest:
 
 - the eleven restrictions with a literal filler that the edition does not obey, and one `owl:allValuesFrom` and two anonymous unions, none of which names a target a record could hold;

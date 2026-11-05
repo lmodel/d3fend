@@ -263,6 +263,14 @@ MAPPING_PREFIXES = {
     "stix": "https://w3id.org/lmodel/stix/",
 }
 
+# The property whose values the catalogue leaves out. The abstracts under d3f:kb-abstract
+# quote the patents, papers, articles, manuals and specifications that D3FEND cites, so
+# those words are their authors'. MITRE's licence grants what MITRE holds, and this project
+# reads EU copyright conservatively, so its own product, the catalogue and everything
+# generated from it, carries none of them. upstream/d3fend.ttl, MITRE's file unchanged,
+# holds every one, and the slot stays so that the schema renders the property.
+LEFT_OUT = {D3F["kb-abstract"]}
+
 # What a class restriction with a literal filler states and this edition obeys, for the
 # entries that are individuals. Those the edition does not obey stay out: tests/
 # test_coverage.py lists them with the count that keeps them out.
@@ -524,9 +532,9 @@ def _record(graph, entry, branch, relations, props, many) -> dict:
         record["subclass_of"] = supers
     literals: dict[str, list] = defaultdict(list)
     for pred, obj in graph.predicate_objects(entry):
-        if pred in STRUCTURAL or (
-            pred in props and props[pred] == "object" and is_d3f(obj)
-        ):
+        if pred in STRUCTURAL or pred in LEFT_OUT:
+            continue
+        if pred in props and props[pred] == "object" and is_d3f(obj):
             continue
         if pred == OWL.disjointWith:
             literals["disjoint_with"].append(curie(obj))
@@ -715,6 +723,12 @@ def _property_slot(
         slot.update(_xsd_range(graph, prop))
         if prop in many:
             slot["multivalued"] = True
+    if prop in LEFT_OUT:
+        comments.append(
+            "The catalogue leaves this property's values out: they quote the sources "
+            "D3FEND cites, and those words are their authors'. upstream/d3fend.ttl, "
+            "MITRE's file unchanged, holds every one."
+        )
 
     aliases = sorted(
         {str(o) for p in (SKOS.altLabel, D3F.synonym) for o in graph.objects(prop, p)}
@@ -1039,8 +1053,9 @@ CATALOGUE_HEADER = """\
 # license in any such copy.
 #
 # upstream/TERMS.txt gives the Terms of Use whole, with their disclaimers. D3FEND carries
-# text of MITRE ATT&CK, MITRE ATLAS, Aerospace SPARTA and CWE, each under its own terms,
-# and abstracts of the sources it cites. NOTICE says which.
+# text of MITRE ATT&CK, MITRE ATLAS, Aerospace SPARTA and CWE, each under its own terms.
+# The abstracts of the sources it cites, under kb-abstract, are left out of this file and
+# stay in upstream/d3fend.ttl. NOTICE says why.
 """
 
 

@@ -473,3 +473,24 @@ def test_a_kind_keeps_the_branch_it_names():
             assert uri is None, kind
         else:
             assert uri == f"d3f:{C.KIND_ROOTS[kind]}", kind
+
+
+def test_the_abstracts_stay_out_of_the_catalogue_and_nothing_else_does():
+    """The one property whose values the catalogue leaves out is kb-abstract, and the
+    slot says so. Every other literal a term holds is a value of its record."""
+    graph = conversion.graph()
+    assert C.LEFT_OUT == {D3F["kb-abstract"]}
+    entries = conversion.entries_by_id()
+    for prop in C.LEFT_OUT:
+        subjects = set(graph.subjects(prop, None))
+        assert len(subjects) == 340
+        assert not any(C.slot_name(prop) in entries[C.curie(s)] for s in subjects)
+        assert any("leaves" in c for c in _slots()[C.slot_name(prop)]["comments"])
+    for term in _terms():
+        for predicate, obj in graph.predicate_objects(term):
+            if predicate not in _declared() or predicate in C.LEFT_OUT:
+                continue
+            if isinstance(obj, Literal) and not C._objects_are_terms(graph, predicate):
+                held = entries[C.curie(term)][C.slot_name(predicate)]
+                values = held if isinstance(held, list) else [held]
+                assert C.scalar(obj) in values, (term, predicate)

@@ -1645,7 +1645,7 @@ d3fend:kb_abstract dcterms:title "kb-abstract" ;
 	rdfs:subPropertyOf d3fend:d3fend_kb_reference_annotation ;
 	skos:definition "x kb-abstract y: The reference x has the abstract y." ;
 	skos:inScheme d3fend:d3fend_entries ;
-	skos:note "D3FEND declares the domain d3f:TechniqueReference, but this edition also uses the property outside it, so every kind may hold this slot." ;
+	skos:note "D3FEND declares the domain d3f:TechniqueReference, but this edition also uses the property outside it, so every kind may hold this slot." , "The catalogue leaves this property's values out: they quote the sources D3FEND cites, and those words are their authors'. upstream/d3fend.ttl, MITRE's file unchanged, holds every one." ;
 	d3fend:owl_domain "d3f:TechniqueReference" ;
 	d3fend:owl_property "annotation" .
 d3fend:kb_article dcterms:title "kb-article" ;

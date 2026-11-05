@@ -133,11 +133,19 @@ def test_a_released_copy_keeps_the_designation_and_the_licence():
     assert annotations["upstream_terms"] == "https://d3fend.mitre.org/tou"
 
 
-def test_notice_counts_the_abstracts():
-    """NOTICE says how many values of kb_abstract quote another party's source."""
-    held = sum("kb_abstract" in e for e in conversion.catalogue()["entries"])
+def test_notice_counts_the_abstracts_the_catalogue_leaves_out():
+    """NOTICE says how many abstracts the Turtle holds and that the catalogue leaves them
+    out, and no record or example holds one, while the slot stays in the schema."""
+    graph = conversion.graph()
+    held = len(set(graph.subjects(conversion.CONVERTER.D3F["kb-abstract"], None)))
     assert held == 340
-    assert f"kb_abstract ({held} in this edition)" in _one_line(ROOT / "NOTICE")
+    assert f"{held} values of kb-abstract" in _one_line(ROOT / "NOTICE")
+    assert not any("kb_abstract" in e for e in conversion.catalogue()["entries"])
+    for path in (ROOT / "tests" / "data").rglob("*.yaml"):
+        assert "kb_abstract" not in path.read_text(encoding="utf-8"), path.name
+    assert "kb_abstract" in (
+        ROOT / "src" / "d3fend" / "schema" / "d3fend_entries.yaml"
+    ).read_text(encoding="utf-8")
 
 
 def test_a_kinds_description_is_this_projects_own():

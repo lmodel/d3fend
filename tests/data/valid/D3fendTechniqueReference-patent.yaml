@@ -5,8 +5,6 @@ owl_kind: individual
 rdf_type:
   - d3f:PatentReference
 has_link: https://patents.google.com/patent/US8566924
-kb_abstract: A method for limiting devices and controlling the applications executed from USB ports on
-  personal computers (PCs).
 kb_author: Steven V Bacastow
 kb_organization: OL Security LLC
 kb_reference_title: Method and system for controlling communication ports

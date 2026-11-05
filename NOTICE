@@ -17,8 +17,8 @@ MITRE's. D3FEND and the D3FEND logo are trademarks of The MITRE Corporation.
 upstream/d3fend.ttl is the ontology as MITRE publishes it, identical to its
 counterpart at d3fend.mitre.org when it was read, and
 scripts/check_upstream_release.py pins it by its git object hash.
-src/d3fend/data/d3fend-1.6.0.yaml holds the same terms and text as records, and
-src/d3fend/schema/d3fend_entries.yaml holds each property's label and definition
+src/d3fend/data/d3fend-1.6.0.yaml holds the same terms and text as records, but
+for the abstracts named below, and src/d3fend/schema/d3fend_entries.yaml holds each property's label and definition
 as a slot's title and description, each word for word, and so does what is
 generated from it: project/, src/d3fend/datamodel/, docs/schema/, .lokf/d3fend.yaml
 and the schema asset of a release. The schema's header carries the designation and
@@ -102,14 +102,16 @@ It also carries CWE entries' names and descriptions:
   organization or individual for any research, development, and/or commercial
   purposes, per the CWE Terms of Use: https://cwe.mitre.org/about/termsofuse.html
 
-The values of kb_abstract (340 in this edition), and some definitions and
-comments, quote the sources D3FEND cites: patents, papers, articles, manuals and
-specifications, each named by its record's kb_reference_title, kb_author and
-has_link. Those words stay their authors'. MITRE's licence grants what MITRE
-holds, and this project grants nothing over them: they are not under this
-repository's Apache License. They stay here because they are part of MITRE's file
-and of what the Terms of Use authorise copying. Anyone who republishes them apart
-from D3FEND should check with their authors.
+The 340 values of kb-abstract in this edition quote the sources D3FEND cites:
+patents, papers, articles, manuals and specifications, each named by its
+record's kb_reference_title, kb_author and has_link. Those words stay their
+authors'. MITRE's licence grants what MITRE holds, and this project grants
+nothing over them. So the catalogue leaves them out, and nothing this project
+generates holds one. They stay only in upstream/d3fend.ttl, MITRE's file copied
+whole and unchanged, as the Terms of Use authorise. Some definitions and
+comments also quote a source, and those stay in the catalogue as part of MITRE's
+text. Anyone who republishes any of them apart from D3FEND should check with
+their authors.
 
 linkml-project-copier
 ---------------------

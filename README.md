@@ -63,7 +63,7 @@ No class, enum or type is a neighbour's, since each carries the `D3fend` prefix.
 
 The schema and the code are under the Apache License 2.0 ([LICENSE](LICENSE)), and the knowledge bundle in [.lokf/knowledge/](.lokf/knowledge) is under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-D3FEND is under its Terms of Use and its repository's MIT licence, and `upstream/`, the catalogue and the slots reproduce MITRE's designation and licence as those terms ask. D3FEND also carries text of ATT&CK, ATLAS, SPARTA and CWE under their own terms, and abstracts of the sources it cites, which stay their authors': see [NOTICE](NOTICE). This is not a project of MITRE, and its use implies no endorsement by it. MITRE D3FEND is a trademark of The MITRE Corporation.
+D3FEND is under its Terms of Use and its repository's MIT licence, and `upstream/`, the catalogue and the slots reproduce MITRE's designation and licence as those terms ask. D3FEND also carries text of ATT&CK, ATLAS, SPARTA and CWE under their own terms, and abstracts of the sources it cites, which stay their authors' and which the catalogue leaves out: see [NOTICE](NOTICE). This is not a project of MITRE, and its use implies no endorsement by it. MITRE D3FEND is a trademark of The MITRE Corporation.
 
 ## Contributing and security
 
