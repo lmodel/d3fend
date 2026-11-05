@@ -1,0 +1,4 @@
+# Fails at: /id
+# A record names a term of D3FEND, as a CURIE under d3f:.
+id: https://example.org/FileAnalysis
+type: D3fendDefensiveTechnique

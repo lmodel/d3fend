@@ -3,32 +3,30 @@ requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [project]
-name = "d3fend"
-description = "D3FEND™ - A knowledge graph of cybersecurity countermeasures: LinkML Schema"
+# Named like lmodel/slsa's slsa-linkml, so the PyPI name says what it holds;
+# the import package stays d3fend. PyPI publishing is off.
+name = "d3fend-linkml"
+description = "MITRE D3FEND Knowledge Graph 1.6.0 (LinkML)"
 authors = [
   {name = "Noel McLoughlin", email = "noel.mcloughlin@gmail.com"},
 ]
 license = "Apache-2.0"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "NOTICE"]
 readme = "README.md"
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10"
 dynamic = ["version"]
 
 dependencies = [
   "linkml-runtime >=1.9.4",
-  "py-spy>=0.4.1",
-  "yamllint>=1.37.1",
 ]
 
 [dependency-groups]
 dev = [
     "linkml>=1.9.3",
-    "mkdocs-material>=8.2.8",
-    "mkdocs-mermaid2-plugin>=1.1.1",
-    "mkdocs-pymdownx-material-extras>=2.5.6",
-    "jupyter>=1.0.0",
-    "mknotebooks>= 0.8.0",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/d3fend"]
 
 # See https://hatch.pypa.io/latest/config/build/#file-selection for how to
 # explicitly include files other than default into the build distributions.
@@ -46,15 +44,35 @@ fallback-version = "0.0.0"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
+# https://docs.astral.sh/ruff/configuration/
+[tool.ruff]
+exclude = [
+    "src/d3fend/_version.py",
+]
+# Set oldest supported Python version
+target-version = "py310"
+
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]
 skip = [
   "LICENSE",
+  "NOTICE",
   "pyproject.toml",
   "uv.lock",
   "project/*",
   "src/d3fend/datamodel/d3fend_pydantic.py",
   "src/d3fend/datamodel/d3fend.py",
+  # MITRE's words, copied as published: the upstream's files, the catalogue, the slots
+  # and the example records cut from the catalogue. The neighbours' adapt copies, copied
+  # as released. Files copied in by the KTL sidecar sync or written by npm, not by hand.
+  "upstream/*",
+  "src/d3fend/data/*",
+  "src/d3fend/schema/d3fend_entries.yaml",
+  "tests/data/*",
+  "tests/neighbours/*",
+  ".lokf/d3fend.yaml",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
@@ -64,6 +82,7 @@ quiet-level = 3
 # Ref.: https://github.com/crate-ci/typos (spell checker)
 [tool.typos.default.extend-words]
 linke = "linke"
+
 [tool.typos.files]
 extend-exclude = [
   "LICENSE",
@@ -72,4 +91,12 @@ extend-exclude = [
   "project/*",
   "src/d3fend/datamodel/d3fend_pydantic.py",
   "src/d3fend/datamodel/d3fend.py",
+  "upstream/*",
+  "src/d3fend/data/*",
+  "src/d3fend/schema/d3fend_entries.yaml",
+  "tests/data/*",
+  "tests/neighbours/*",
+  ".lokf/d3fend.yaml",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]

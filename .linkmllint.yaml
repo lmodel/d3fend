@@ -1,0 +1,4 @@
+# linkml-lint reads this file from the directory `just lint` runs in. The recommended
+# rules apply in full: the slots turn D3FEND's kebab-case property names into snake_case
+# under their own IRIs, and the classes carry a D3fend prefix.
+extends: recommended

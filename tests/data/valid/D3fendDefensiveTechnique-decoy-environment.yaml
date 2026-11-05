@@ -1,0 +1,24 @@
+# Record d3f:DecoyEnvironment of D3FEND 1.6.0.
+id: d3f:DecoyEnvironment
+type: D3fendDefensiveTechnique
+owl_kind: class_and_individual
+rdf_type:
+  - d3f:DecoyEnvironment
+subclass_of:
+  - d3f:DefensiveTechnique
+d3fend_id: D3-DE
+definition:
+  - A Decoy Environment comprises hosts and networks for the purposes of deceiving an attacker.
+kb_article:
+  - |-
+    ## Technique Overview
+
+    Systems in a decoy environment are typically configured so that some detectable means of communication does not have any legitimate business purpose.  Any communication via these means should be logged and analyzed to find potential indicators of compromise for a possible past or future attack against other systems.
+label:
+  - Decoy Environment
+synonym:
+  - Honeypot
+enables:
+  - d3f:Deceive
+manages:
+  - d3f:DecoyArtifact

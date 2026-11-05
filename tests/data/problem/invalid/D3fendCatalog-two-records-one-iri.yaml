@@ -1,0 +1,10 @@
+# Fails at: /entries/1/id
+# Two records hold one IRI.
+ontology_iri: http://d3fend.mitre.org/ontologies/d3fend.owl
+version_info: 1.6.0
+entries:
+  - &id001
+    id: d3f:File
+    type: D3fendDigitalArtifact
+    owl_kind: class
+  - *id001

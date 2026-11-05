@@ -1,0 +1,13 @@
+# Record d3f:PhysicalLock of D3FEND 1.6.0.
+id: d3f:PhysicalLock
+type: D3fendArtifact
+owl_kind: class_and_individual
+subclass_of:
+  - d3f:PhysicalArtifact
+definition:
+  - A lock is a mechanical latching device for securing moveable portions of physical barriers in a secured
+    position.
+label:
+  - Physical Lock
+see_also:
+  - https://dbpedia.org/page/Lock_and_key

@@ -1,26 +1,80 @@
 {
-   "atlas": "https://atlas.mitre.org/",
-   "attack": "https://attack.mitre.org/",
-   "capec": "https://capec.mitre.org/data/definitions/",
-   "cci": "https://public.cyber.mil/stigs/cci/",
-   "cve": "https://nvd.nist.gov/vuln/detail/",
-   "cwe": "https://cwe.mitre.org/data/definitions/",
+   "BFO": "http://purl.obolibrary.org/obo/BFO_",
+   "COMMONCOREONTOLOGY": "http://www.ontologyrepository.com/CommonCoreOntologies/",
+   "IAO": "http://purl.obolibrary.org/obo/IAO_",
+   "attack": "https://w3id.org/lmodel/attack/",
+   "capec": "https://w3id.org/lmodel/capec/",
+   "cco": "https://www.commoncoreontologies.org/",
+   "cwe": "https://w3id.org/lmodel/cwe/",
    "d3f": "http://d3fend.mitre.org/ontologies/d3fend.owl#",
-   "dbr": "http://dbpedia.org/resource/",
-   "dc": "http://purl.org/dc/elements/1.1/",
+   "d3fend": "https://w3id.org/lmodel/d3fend/",
    "dcterms": "http://purl.org/dc/terms/",
    "linkml": "https://w3id.org/linkml/",
-   "mitre-attack": "https://attack.mitre.org/",
-   "oscal": "https://lmodel.github.io/oscal/",
+   "nist_sp_800_53": "https://w3id.org/lmodel/nist-sp-800-53/",
    "owl": "http://www.w3.org/2002/07/owl#",
    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-   "schema": "http://schema.org/",
    "skos": "http://www.w3.org/2004/02/skos/core#",
-   "sparta": "https://sparta.aerospace.org/",
-   "spdx": "https://lmodel.github.io/spdx/",
-   "stix": "https://lmodel.github.io/stix/",
-   "unified_cyber_ontology": "https://lmodel.github.io/uco-master/",
-   "wikidata": "https://www.wikidata.org/wiki/",
-   "xsd": "http://www.w3.org/2001/XMLSchema#"
+   "stix": "https://w3id.org/lmodel/stix/",
+   "xsd": "http://www.w3.org/2001/XMLSchema#",
+   "D3fendAgent": {
+      "@id": "d3f:Agent"
+   },
+   "D3fendAnalyticTechnique": {
+      "@id": "d3f:AnalyticTechnique"
+   },
+   "D3fendArtifact": {
+      "@id": "d3f:Artifact"
+   },
+   "D3fendAttackDataSource": {
+      "@id": "d3f:ATTACKEnterpriseDataSource"
+   },
+   "D3fendAttackMitigation": {
+      "@id": "d3f:ATTACKEnterpriseMitigation"
+   },
+   "D3fendCciControl": {
+      "@id": "d3f:CCIControl"
+   },
+   "D3fendControlCatalog": {
+      "@id": "d3f:ControlCatalog"
+   },
+   "D3fendDefensiveTactic": {
+      "@id": "d3f:DefensiveTactic"
+   },
+   "D3fendDefensiveTechnique": {
+      "@id": "d3f:DefensiveTechnique"
+   },
+   "D3fendDigitalArtifact": {
+      "@id": "d3f:DigitalArtifact"
+   },
+   "D3fendEvent": {
+      "@id": "d3f:Event"
+   },
+   "D3fendExternalControl": {
+      "@id": "d3f:ExternalControl"
+   },
+   "D3fendGoal": {
+      "@id": "d3f:Goal"
+   },
+   "D3fendNistControl": {
+      "@id": "d3f:NISTControl"
+   },
+   "D3fendOffensiveTactic": {
+      "@id": "d3f:OffensiveTactic"
+   },
+   "D3fendOffensiveTechnique": {
+      "@id": "d3f:OffensiveTechnique"
+   },
+   "D3fendTechnique": {
+      "@id": "d3f:Technique"
+   },
+   "D3fendTechniqueReference": {
+      "@id": "d3f:TechniqueReference"
+   },
+   "D3fendThreatModelThing": {
+      "@id": "d3f:ExternalThreatModelThing"
+   },
+   "D3fendWeakness": {
+      "@id": "d3f:Weakness"
+   }
 }

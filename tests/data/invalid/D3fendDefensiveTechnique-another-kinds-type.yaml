@@ -1,0 +1,4 @@
+# Fails at: /type
+# The type names a kind this class is not.
+id: d3f:FileAnalysis
+type: D3fendWeakness

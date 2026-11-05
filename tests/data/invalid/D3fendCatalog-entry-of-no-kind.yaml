@@ -1,0 +1,7 @@
+# Fails at: /entries/0
+# The base class is abstract, and no kind takes this.
+ontology_iri: http://d3fend.mitre.org/ontologies/d3fend.owl
+version_info: 1.6.0
+entries:
+  - id: d3f:FileAnalysis
+    type: D3fendEntry

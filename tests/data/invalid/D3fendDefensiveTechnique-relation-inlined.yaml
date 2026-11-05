@@ -1,0 +1,6 @@
+# Fails at: /analyzes/0
+# A relation names its target. It does not hold it.
+id: d3f:FileAnalysis
+type: D3fendDefensiveTechnique
+analyzes:
+  - id: d3f:File

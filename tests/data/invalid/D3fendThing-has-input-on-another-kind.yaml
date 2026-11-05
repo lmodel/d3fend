@@ -1,0 +1,6 @@
+# Fails at: /
+# D3FEND declares that domain as Event.
+id: d3f:Plan
+type: D3fendThing
+has_input:
+  - d3f:File

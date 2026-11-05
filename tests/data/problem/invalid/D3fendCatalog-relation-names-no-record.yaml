@@ -1,0 +1,13 @@
+# Fails at: /entries/1/analyzes/0
+# A relation names a record the catalogue does not hold.
+ontology_iri: http://d3fend.mitre.org/ontologies/d3fend.owl
+version_info: 1.6.0
+entries:
+  - id: d3f:File
+    type: D3fendDigitalArtifact
+    owl_kind: class
+  - id: d3f:FileAnalysis
+    type: D3fendDefensiveTechnique
+    owl_kind: class
+    analyzes:
+      - d3f:Folder

@@ -1,0 +1,15 @@
+# Record d3f:DS0002 of D3FEND 1.6.0.
+id: d3f:DS0002
+type: D3fendAttackDataSource
+owl_kind: individual
+rdf_type:
+  - d3f:ATTACKEnterpriseDataSource
+comment:
+  - The digital artifact mapping for this data source is only applicable to the User Account Metadata
+    component
+definition:
+  - A profile representing a user, device, service, or application used to authenticate and access resources
+label:
+  - User Account (ATT&CK DS)
+exactly:
+  - d3f:UserAccount

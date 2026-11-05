@@ -1,0 +1,15 @@
+# Record d3f:Harden of D3FEND 1.6.0.
+id: d3f:Harden
+type: D3fendDefensiveTactic
+owl_kind: class_and_individual
+rdf_type:
+  - d3f:DefensiveTactic
+subclass_of:
+  - d3f:DefensiveTactic
+definition:
+  - The harden tactic is used to increase the opportunity cost of computer network exploitation. Hardening
+    differs from Detection in that it generally is conducted before a system is online and operational.
+display_order: 0
+display_priority: 0
+label:
+  - Harden

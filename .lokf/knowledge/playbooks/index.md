@@ -1,0 +1,7 @@
+# Playbooks
+
+* [Regenerate and test](regenerate-and-test.md) - How to change the schema: edit the converter or a hand-written module, run `just gen-schema`, `just lint`, `just gen-project`, `just gen-doc`, `just lokf-adapt` and `just test`, and commit what they write. Generated files are never edited by hand.
+* [Validate a catalogue](validate-a-catalogue.md) - How to validate a catalogue: run `linkml-validate` with `D3fendCatalog` as the target class, and `tests/d3fend_rules.py` for what JSON Schema cannot state. `project/jsonschema/d3fend.schema.json` serves anyone without LinkML.
+* [Release](release.md) - How a release happens: `semantic-release.yml` reads Conventional Commits on `main`, promotes the `## [Unreleased]` section, tags and publishes. The first release needs the `v0.0.0` baseline tag on `main`, and PyPI publishing stays off.
+* [Move to another edition](update-upstream-pins.md) - How to move the schema to another edition when the watch reports one: read what changed, then move `upstream/`, the pins in `scripts/check_upstream_release.py`, the schema headers and the catalogue's name together, and let the tests show what the new Turtle changed.
+* [Knowledge sources map](knowledge-sources.md) - The librarian's scrape map: every repository location and external source this bundle derives concepts from, how to re-check each, and the tracked paths left out with their reasons.

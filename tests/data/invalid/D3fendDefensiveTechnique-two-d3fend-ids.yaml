@@ -1,0 +1,7 @@
+# Fails at: /d3fend_id
+# No record of this edition holds two.
+id: d3f:FileAnalysis
+type: D3fendDefensiveTechnique
+d3fend_id:
+  - D3-FA
+  - D3-X

@@ -1,0 +1,4 @@
+# Fails at: /risk_impact
+id: d3f:Plan
+type: D3fendThing
+risk_impact: 2.5

@@ -1,0 +1,15 @@
+# Record d3f:Mean of D3FEND 1.6.0.
+id: d3f:Mean
+type: D3fendAnalyticTechnique
+owl_kind: class_and_individual
+subclass_of:
+  - d3f:CentralTendency
+d3fend_id: D3A-MEA
+definition:
+  - The sum of all measurements divided by the number of observations in the data set.
+kb_article:
+  - |-
+    ## References
+    Wikipedia. (n.d.). Central tendency. [Link](https://en.wikipedia.org/wiki/Central_tendency)
+label:
+  - Mean

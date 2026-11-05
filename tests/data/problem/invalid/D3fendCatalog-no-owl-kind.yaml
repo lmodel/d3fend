@@ -1,0 +1,7 @@
+# Fails at: /entries/0
+# A record of a catalogue says how the ontology declares it.
+ontology_iri: http://d3fend.mitre.org/ontologies/d3fend.owl
+version_info: 1.6.0
+entries:
+  - id: d3f:File
+    type: D3fendDigitalArtifact

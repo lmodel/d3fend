@@ -1,0 +1,8 @@
+# Record d3f:Classifying of D3FEND 1.6.0.
+id: d3f:Classifying
+type: D3fendGoal
+owl_kind: class
+subclass_of:
+  - d3f:AnalyticalPurpose
+label:
+  - Classifying

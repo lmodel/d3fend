@@ -1,0 +1,6 @@
+# Written from the schema: no record of this edition holds a risk rating.
+id: d3f:Plan
+type: D3fendThing
+risk_impact: 5
+risk_likelihood: 1
+version: '1.0'

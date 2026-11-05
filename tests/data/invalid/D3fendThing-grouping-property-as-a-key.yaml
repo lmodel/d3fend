@@ -1,0 +1,6 @@
+# Fails at: /
+# A property that only groups others is on no class.
+id: d3f:Plan
+type: D3fendThing
+d3fend_object_property:
+  - d3f:File

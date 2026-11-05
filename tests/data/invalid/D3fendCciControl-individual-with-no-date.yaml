@@ -1,0 +1,5 @@
+# Fails at: /
+# A class restriction says a CCI item holds a date, and every individual does.
+id: d3f:CCI-X
+type: D3fendCciControl
+owl_kind: individual

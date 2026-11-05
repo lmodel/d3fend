@@ -1,0 +1,40 @@
+# A few records of D3FEND 1.6.0, cut to the keys that show their relations, so that
+# every reference resolves.
+ontology_iri: http://d3fend.mitre.org/ontologies/d3fend.owl
+version_info: 1.6.0
+version_iri: http://d3fend.mitre.org/ontologies/d3fend/1.6.0/d3fend.owl
+release_date: '2026-08-31T00:12:00+00:00'
+ontology_title: D3FEND™ - A knowledge graph of cybersecurity countermeasures
+ontology_license: MIT
+entries:
+  - id: d3f:DefensiveTechnique
+    type: D3fendDefensiveTechnique
+    owl_kind: class
+  - id: d3f:FileAnalysis
+    type: D3fendDefensiveTechnique
+    owl_kind: class_and_individual
+    rdf_type:
+      - d3f:FileAnalysis
+    subclass_of:
+      - d3f:DefensiveTechnique
+    d3fend_id: D3-FA
+    label:
+      - File Analysis
+    analyzes:
+      - d3f:File
+    enables:
+      - d3f:Detect
+  - id: d3f:File
+    type: D3fendDigitalArtifact
+    owl_kind: class_and_individual
+    label:
+      - File
+  - id: d3f:Detect
+    type: D3fendDefensiveTactic
+    owl_kind: class_and_individual
+    label:
+      - Detect
+disjoint_groups:
+  - members:
+      - d3f:File
+      - d3f:Detect

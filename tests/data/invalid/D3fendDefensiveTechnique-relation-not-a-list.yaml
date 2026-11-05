@@ -1,0 +1,4 @@
+# Fails at: /analyzes
+id: d3f:FileAnalysis
+type: D3fendDefensiveTechnique
+analyzes: d3f:File

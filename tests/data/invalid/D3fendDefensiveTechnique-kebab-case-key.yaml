@@ -1,0 +1,6 @@
+# Fails at: /
+# A slot's name is snake_case, whatever its IRI says.
+id: d3f:FileAnalysis
+type: D3fendDefensiveTechnique
+may-access:
+  - d3f:File

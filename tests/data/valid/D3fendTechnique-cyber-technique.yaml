@@ -1,0 +1,10 @@
+# Record d3f:CyberTechnique of D3FEND 1.6.0.
+id: d3f:CyberTechnique
+type: D3fendTechnique
+owl_kind: class
+subclass_of:
+  - d3f:Technique
+label:
+  - Cyber Technique
+implemented_by:
+  - d3f:Procedure

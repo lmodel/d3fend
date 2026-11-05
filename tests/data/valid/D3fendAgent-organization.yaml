@@ -1,0 +1,10 @@
+# Record d3f:DISA_FSO of D3FEND 1.6.0.
+id: d3f:DISA_FSO
+type: D3fendAgent
+owl_kind: individual
+rdf_type:
+  - d3f:Organization
+definition:
+  - Defense Information Systems Agency (DISA) Field Security Office (FSO)
+label:
+  - DISA FSO

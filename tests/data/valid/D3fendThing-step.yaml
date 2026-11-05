@@ -1,0 +1,10 @@
+# Record d3f:step-1 of D3FEND 1.6.0.
+id: d3f:step-1
+type: D3fendThing
+owl_kind: individual
+label:
+  - Step 1 - Copy Token
+invokes:
+  - d3f:CopyToken
+next:
+  - d3f:step-2
