@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-05
+
 ### Added
 
 - **A LinkML model of MITRE D3FEND 1.6.0 as a catalogue with typed relations**, as an umbrella over `d3fend_core` and `d3fend_entries`. The 22 kinds of entry are classes under the abstract `D3fendEntry`, every property of the ontology is a slot under its own IRI, and all 5,419 terms are records in `src/d3fend/data/d3fend-1.6.0.yaml`. The catalogue leaves out the 340 abstracts of cited sources, which stay in MITRE's file alone.
