@@ -3,6 +3,7 @@
 import hashlib
 import json
 import keyword
+from functools import cache
 from pathlib import Path
 
 import jsonschema
@@ -130,7 +131,10 @@ MAPPING_KEYS = (
 )
 
 
+@cache
 def _load(path):
+    """A schema file, parsed once: the tests read the copy and the neighbours many times
+    and change nothing in them."""
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
@@ -145,6 +149,7 @@ def _expander(doc):
     return expand
 
 
+@cache
 def _names(path):
     """Each kind of element a schema file declares, and every slot and attribute name
     with the IRI it expands to."""
@@ -363,8 +368,10 @@ def test_no_slot_is_a_python_keyword():
     assert not {name for name in slots if keyword.iskeyword(name)}
 
 
+@cache
 def _concept_schema():
-    """The JSON Schema of the adapt copy, as `lokf validate` reads it beside LOKF."""
+    """The JSON Schema of the adapt copy, as `lokf validate` reads it beside LOKF.
+    Generating it takes seconds, so the two tests that read it share one."""
     generator = JsonSchemaGenerator(str(COPY), mergeimports=True)
     return json.loads(generator.serialize())["$defs"]
 

@@ -329,12 +329,17 @@ def test_every_other_restriction_is_listed():
     assert other == AXIOMS_LEFT_OUT
 
 
+@cache
+def _tree():
+    """Each term with everything above it, computed once for the parametrized tests."""
+    return C.branches(conversion.graph(), _terms())
+
+
 def _individuals_below(class_name):
     graph = conversion.graph()
-    tree = C.branches(graph, _terms())
     return [
         term
-        for term, branch in tree.items()
+        for term, branch in _tree().items()
         if D3F[class_name] in branch
         and term != D3F[class_name]
         and (term, RDF.type, OWL.NamedIndividual) in graph
@@ -356,7 +361,7 @@ def test_a_literal_restriction_is_a_rule_only_where_the_edition_obeys_it(
     if slot:
         assert below
         assert len(holds) == len(below), (class_name, local)
-        kind = C.kind_of(C.branches(graph, _terms())[D3F[class_name]])
+        kind = C.kind_of(_tree()[D3F[class_name]])
         assert slot in C.KIND_RULES[kind]
     else:
         assert len(holds) < len(below) or not below, (class_name, local)
