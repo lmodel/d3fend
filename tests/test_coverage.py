@@ -1,8 +1,8 @@
 """Walks the Turtle beside the schema and the catalogue, in both directions.
 
-Every class, individual, property and restriction of upstream/d3fend.ttl lands in a slot,
-a class or a record, or is listed here with the reason it does not. Nothing lands in the
-schema that the Turtle does not state, beyond the few slots named here.
+Every class, individual, property and restriction of upstream/d3fend.ttl is rendered as a
+slot, a class or a value of a record, or is listed here with the reason it is not. The
+schema renders nothing the Turtle does not state, beyond the few slots named here.
 """
 
 import collections
@@ -30,8 +30,8 @@ SLOTS_WITH_NO_DECLARED_PROPERTY = {
     "disjoint_with",
 }
 
-# The three declared properties that only the ontology's header uses. They land on the
-# catalogue as attributes, not on a record.
+# The three declared properties that only the ontology's header uses. They are rendered
+# as attributes of the catalogue, not of a record.
 HEADER_ONLY = {C.DCTERMS.title, C.DCTERMS.description, C.DCTERMS.license}
 
 # Subjects that are neither a term, a property nor the ontology, and why they stay out.
@@ -83,8 +83,8 @@ AXIOMS_LEFT_OUT = {
     ("RDPEvent", "unionOf", "TCPEvent", "UDPEvent"),
 }
 
-# Each predicate of a term's triples, and where it lands. test_every_predicate_lands reads
-# this table with the declared properties, which land on the slot of their own name.
+# Each predicate of a term's triples, and where it is rendered. test_every_predicate_lands
+# reads this table with the declared properties, each rendered as the slot of its own name.
 UNDECLARED_PREDICATES = {
     RDF.type: "rdf_type and owl_kind",
     RDFS.subClassOf: "subclass_of, and each relation slot for a restriction",
@@ -160,15 +160,16 @@ def test_the_only_namespace_of_the_terms_is_d3fends():
 
 
 def test_every_predicate_lands():
-    """Each predicate of a term's triples has a home, so a new one fails here. The
-    converter also stops on one it does not know."""
+    """Each predicate of a term's triples is rendered somewhere, so a new one fails here.
+    The converter also stops on one it does not know."""
     graph = conversion.graph()
     used = {p for term in _terms() for p in graph.predicates(term)}
     assert used - set(_declared()) - set(UNDECLARED_PREDICATES) == set()
 
 
 def test_every_declared_property_is_a_slot_under_its_own_iri():
-    """All 295 properties land, each once, and only the header's three as attributes."""
+    """All 295 properties are rendered, each once, and only the header's three as
+    attributes."""
     declared = _declared()
     assert len(declared) == 295
     assert len(_rendered_props()) == 292
@@ -407,7 +408,7 @@ def test_each_rule_in_the_schema_is_one_listed_above():
 
 def test_the_disjoint_axioms_land():
     """Each owl:AllDisjointClasses is a group of the catalogue, and each owl:disjointWith
-    a value of its record's slot."""
+    is a value of its record's slot."""
     graph = conversion.graph()
     groups = {
         tuple(
