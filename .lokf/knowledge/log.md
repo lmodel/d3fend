@@ -2,6 +2,7 @@
 
 ## 2026-11-05
 
+* **Prose**: reworded 8 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Changed**: the catalogue leaves the 340 abstracts of cited sources out; NOTICE says so since 0b0ca57.
 * **Changed**: the catalogue holds no `kb_abstract` value; `tests/test_catalogue.py` holds the 340 left out since 0b0ca57.
 * **Changed**: the abstracts of cited sources are among what the schema leaves out; `docs/about.md` says so since 0b0ca57.

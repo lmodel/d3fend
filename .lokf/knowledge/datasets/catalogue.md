@@ -32,7 +32,7 @@ The converter writes the file from the Turtle, and its header reproduces MITRE's
 
 All 5,419 records pass the committed JSON Schema, `linkml-validate` and the rules on a whole catalogue, and load into the generated models.[^index.md]
 
-A relation's values come from the Turtle's direct triples and its class restrictions. Through the JSON-LD context the catalogue gives back every triple the Turtle states about a term, but for the 340 abstracts of cited sources, which it leaves out.[^test_catalogue.py]
+A relation's values come from the Turtle's direct triples and its class restrictions. Through the JSON-LD context, the catalogue gives back every triple the Turtle states about a term. The one exception is the 340 abstracts of cited sources, which it leaves out.[^test_catalogue.py]
 
 [^test_upstream.py]: tests/test_upstream.py, test_each_file_that_copies_the_text_carries_the_designation
 [^index.md]: docs/index.md, What was checked

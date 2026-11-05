@@ -25,7 +25,7 @@ status: draft
 
 Each file is the schema asset of a lmodel release, pinned in `tests/test_schema_rules.py` by its checksum.[^test_schema_rules.py]
 
-The test fails on any shared class, enum or type, and on a shared key it does not list. D3FEND's properties are ordinary words, so it lists a few for oscal, attack, stix, nist-nvd, uco, spdx and slsa.[^test_schema_rules.py]
+The same test fails on any shared class, enum or type, and on a shared key the test does not list. D3FEND's properties are ordinary words, so it lists a few for oscal, attack, stix, nist-nvd, uco, spdx and slsa.[^test_schema_rules.py]
 
 `tests/test_mappings.py` reads these copies to hold the mappings to attack, stix, cwe, capec and nist-sp-800-53.[^test_mappings.py]
 

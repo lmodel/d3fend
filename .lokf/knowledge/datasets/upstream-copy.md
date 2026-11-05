@@ -23,7 +23,11 @@ status: draft
 
 # Copy of the upstream
 
-The folder holds `d3fend.ttl`, read from MITRE's versioned address, `LICENSE.md` from the repository that builds the ontology, and `TERMS.txt`, the text of the Terms of Use.[^upstream-readme.md]
+The folder holds these files:[^upstream-readme.md]
+
+- `d3fend.ttl`, read from MITRE's versioned address;
+- `LICENSE.md`, from the repository that builds the ontology;
+- `TERMS.txt`, the text of the Terms of Use.
 
 `tests/test_upstream.py` holds the folder to the pins, so nothing is added and nothing changes.[^test_upstream.py]
 

@@ -24,7 +24,7 @@ status: draft
 
 D3FEND is an OWL ontology of 4,465 classes, and most name one thing: `d3f:FileAnalysis` one countermeasure, `d3f:T1003` one technique of ATT&CK. D3FEND's conventions pun a defensive technique as an instance, and its distribution states all but 23 of its restrictions on terms again as direct triples, such as `d3f:FileAnalysis d3f:analyzes d3f:File`.[^about.md]
 
-So the schema models the catalogue that graph already is. A kind of entry is a class, a property is a slot, and a term is a record.[^about.md]
+So the schema models the catalogue that the graph already is. A kind of entry is a class, a property is a slot, and a term is a record.[^about.md]
 
 The Turtle states 1,939 class restrictions that name a term, and each is a value of its record's slot.[^test_coverage.py]
 

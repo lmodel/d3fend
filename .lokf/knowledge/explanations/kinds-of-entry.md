@@ -25,7 +25,7 @@ status: draft
 
 An entry takes the first kind in the converter's table whose branch it sits under, through `rdfs:subClassOf` and `rdf:type`. An ATT&CK Enterprise technique sits under both `d3f:OffensiveTechnique` and `d3f:ATTACKEnterpriseTechnique`, and takes `D3fendOffensiveTechnique`.[^about.md]
 
-`rdf_type` and `subclass_of` keep every parent the ontology states. The 874 ATT&CK Enterprise techniques and the 64 framework tactics are the terms with two such parents, and a test holds what they take.[^test_catalogue.py]
+`rdf_type` and `subclass_of` keep every parent the ontology states. The 874 ATT&CK Enterprise techniques and the 64 framework tactics are the terms with two such parents, and a test holds the kind each takes.[^test_catalogue.py]
 
 The ten types of reference share their fields, so they are one kind, and `rdf_type` says which each is.[^about.md]
 

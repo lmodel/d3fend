@@ -20,7 +20,7 @@ status: draft
 
 The module imports only the LinkML types.[^d3fend_core.yaml]
 
-`d3fend_date_time` admits a date and time with no time zone, which LinkML's `datetime` asks a format checker to refuse, and most of D3FEND's values have none. `d3fend_uri` is typed `xsd:anyURI` and admits the three empty `has-link` values of this edition, which LinkML's `uri` would refuse.[^d3fend_core.yaml]
+`d3fend_date_time` admits a date and time with no time zone. LinkML's `datetime` asks a format checker to refuse one, and most of D3FEND's values have none. `d3fend_uri` is typed `xsd:anyURI` and admits the three empty `has-link` values of this edition, which LinkML's `uri` would refuse.[^d3fend_core.yaml]
 
 `D3fendOwlKind` says whether the ontology declares a term a class, an individual or both.[^d3fend_core.yaml]
 
