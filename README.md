@@ -27,7 +27,7 @@ The schema is the one home for mappings. The hand-kept SSSOM file and the guesse
 * **[lmodel/cwe](https://github.com/lmodel/cwe)**: `close_mappings` on the weakness, and `related_mappings` on `cwe_id`, since D3FEND writes the number with a `CWE-` prefix. `tests/test_mappings.py` checks both against the released copy.
 * **[lmodel/capec](https://github.com/lmodel/capec)**: `related_mappings` on `capec_id`, for the same reason. `tests/test_mappings.py` checks it against the released copy.
 * **[lmodel/nist-sp-800-53](https://github.com/lmodel/nist-sp-800-53)**: `related_mappings` on the NIST control to the control and the enhancement, since D3FEND names three revisions and the target one. `tests/test_mappings.py` checks both against the released copy.
-* **[SKOS](https://www.w3.org/TR/skos-reference/) and [IAO](https://obofoundry.org/ontology/iao.html)**: `close_mappings` on `related` and `definition`, the two terms the ontology itself names as `rdfs:isDefinedBy`. `tests/test_mappings.py` reads them from the Turtle.
+* **[SKOS](https://www.w3.org/TR/skos-reference/), [IAO](https://obofoundry.org/ontology/iao.html), [BFO](https://obofoundry.org/ontology/bfo.html) and the [Common Core Ontologies](https://github.com/CommonCoreOntology/CommonCoreOntologies)**: `close_mappings` on the ten properties the ontology itself names as `rdfs:isDefinedBy`, such as `related` to `skos:related` and `has_participant` to `BFO:0000057`. `tests/test_mappings.py` reads each from the Turtle.
 
 ## Repository Structure
 
