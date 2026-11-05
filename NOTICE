@@ -17,8 +17,8 @@ MITRE's. D3FEND and the D3FEND logo are trademarks of The MITRE Corporation.
 upstream/d3fend.ttl is the ontology as MITRE publishes it, identical to its
 counterpart at d3fend.mitre.org when it was read, and
 scripts/check_upstream_release.py pins it by its git object hash.
-src/d3fend/data/d3fend-1.6.0.yaml holds the same terms and text as records, but
-for the abstracts named below. src/d3fend/schema/d3fend_entries.yaml holds each
+src/d3fend/data/d3fend-1.6.0.yaml holds the same terms and text as records, other
+than the abstracts named below. src/d3fend/schema/d3fend_entries.yaml holds each
 property's label and definition as a slot's title and description, word for
 word, and so does what is generated from it: project/, src/d3fend/datamodel/,
 docs/schema/, .lokf/d3fend.yaml and the schema asset of a release. The schema's
