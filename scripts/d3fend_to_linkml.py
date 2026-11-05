@@ -245,17 +245,32 @@ KIND_MAPPINGS = {
     },
 }
 # The identifiers name the same things in another form: CWE-79 is 79 there, and an ATT&CK
-# id is one external reference among several. So each is related. The two terms outside
-# the lmodel family are the ones the ontology itself names as rdfs:isDefinedBy.
+# id is one external reference among several. So each is related. The terms outside the
+# lmodel family are the properties of SKOS, IAO, BFO and the Common Core Ontologies that
+# the ontology itself names as rdfs:isDefinedBy, and tests/test_mappings.py reads each
+# from the Turtle. The WordNet senses it names the same way are words, not properties, so
+# they stay in the is_defined_by annotation alone.
 SLOT_MAPPINGS = {
     "attack_id": {"related_mappings": ["stix:external_id"]},
     "cwe_id": {"related_mappings": ["cwe:CWE_ID"]},
     "capec_id": {"related_mappings": ["capec:CAPEC_ID"]},
     "related": {"close_mappings": ["skos:related"]},
     "definition": {"close_mappings": ["IAO:0000115"]},
+    "has_participant": {"close_mappings": ["BFO:0000057"]},
+    "participates_in": {"close_mappings": ["BFO:0000056"]},
+    "preceded_by": {"close_mappings": ["BFO:0000062"]},
+    "precedes": {"close_mappings": ["BFO:0000063"]},
+    "caused_by": {"close_mappings": ["cco:ont00001819"]},
+    "causes": {"close_mappings": ["cco:ont00001803"]},
+    "has_recipient": {"close_mappings": ["COMMONCOREONTOLOGY:has_recipient"]},
+    "has_sender": {"close_mappings": ["COMMONCOREONTOLOGY:has_sender"]},
 }
 MAPPING_PREFIXES = {
+    "BFO": "http://purl.obolibrary.org/obo/BFO_",
+    # The name linkml-lint's prefix registry gives the ontology's earlier namespace.
+    "COMMONCOREONTOLOGY": "http://www.ontologyrepository.com/CommonCoreOntologies/",
     "IAO": "http://purl.obolibrary.org/obo/IAO_",
+    "cco": "https://www.commoncoreontologies.org/",
     "attack": "https://w3id.org/lmodel/attack/",
     "capec": "https://w3id.org/lmodel/capec/",
     "cwe": "https://w3id.org/lmodel/cwe/",
@@ -723,6 +738,11 @@ def _property_slot(
         slot.update(_xsd_range(graph, prop))
         if prop in many:
             slot["multivalued"] = True
+        if slot.get("range") == "integer" and graph.value(prop, RDFS.range) is None:
+            comments.append(
+                "The ontology declares no range, and every value of this edition is an "
+                "integer."
+            )
     if prop in LEFT_OUT:
         comments.append(
             "The catalogue leaves this property's values out: they quote the sources "

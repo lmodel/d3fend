@@ -38,9 +38,12 @@ prefixes:
   linkml: https://w3id.org/linkml/
   owl: http://www.w3.org/2002/07/owl#
   xsd: http://www.w3.org/2001/XMLSchema#
+  BFO: http://purl.obolibrary.org/obo/BFO_
+  COMMONCOREONTOLOGY: http://www.ontologyrepository.com/CommonCoreOntologies/
   IAO: http://purl.obolibrary.org/obo/IAO_
   attack: https://w3id.org/lmodel/attack/
   capec: https://w3id.org/lmodel/capec/
+  cco: https://www.commoncoreontologies.org/
   cwe: https://w3id.org/lmodel/cwe/
   d3f: http://d3fend.mitre.org/ontologies/d3fend.owl#
   nist_sp_800_53: https://w3id.org/lmodel/nist-sp-800-53/
@@ -1003,6 +1006,8 @@ slots:
     range: D3fendEntry
     multivalued: true
     inlined: false
+    close_mappings:
+    - cco:ont00001819
     annotations:
       owl_property: object
       is_defined_by: https://www.commoncoreontologies.org/ont00001819
@@ -1016,6 +1021,8 @@ slots:
     range: D3fendEntry
     multivalued: true
     inlined: false
+    close_mappings:
+    - cco:ont00001803
     annotations:
       owl_property: object
       is_defined_by: https://www.commoncoreontologies.org/ont00001803
@@ -1642,6 +1649,8 @@ slots:
     slot_uri: d3f:display-order
     is_a: d3fend_display_annotation
     range: integer
+    comments:
+    - The ontology declares no range, and every value of this edition is an integer.
     annotations:
       owl_property: annotation
   display_priority:
@@ -1650,6 +1659,8 @@ slots:
     slot_uri: d3f:display-priority
     is_a: d3fend_display_annotation
     range: integer
+    comments:
+    - The ontology declares no range, and every value of this edition is an integer.
     annotations:
       owl_property: annotation
   drives:
@@ -2139,6 +2150,8 @@ slots:
     range: D3fendEntry
     multivalued: true
     inlined: false
+    close_mappings:
+    - BFO:0000057
     annotations:
       owl_property: object
       is_defined_by: http://purl.obolibrary.org/obo/BFO_0000057
@@ -2175,6 +2188,8 @@ slots:
     see_also:
     - http://wordnet-rdf.princeton.edu/id/09651094-n
     - http://wordnet-rdf.princeton.edu/id/09788768-n
+    close_mappings:
+    - COMMONCOREONTOLOGY:has_recipient
     annotations:
       owl_property: object
       is_defined_by: http://www.ontologyrepository.com/CommonCoreOntologies/has_recipient
@@ -2189,6 +2204,8 @@ slots:
     inlined: false
     see_also:
     - http://wordnet-rdf.princeton.edu/id/10598214-n
+    close_mappings:
+    - COMMONCOREONTOLOGY:has_sender
     annotations:
       owl_property: object
       is_defined_by: http://www.ontologyrepository.com/CommonCoreOntologies/has_sender
@@ -3356,6 +3373,8 @@ slots:
     range: D3fendEntry
     multivalued: true
     inlined: false
+    close_mappings:
+    - BFO:0000056
     annotations:
       owl_property: object
       is_defined_by: http://purl.obolibrary.org/obo/BFO_0000056
@@ -3395,6 +3414,8 @@ slots:
     range: D3fendEntry
     multivalued: true
     inlined: false
+    close_mappings:
+    - BFO:0000062
     annotations:
       owl_property: object
       is_defined_by: http://purl.obolibrary.org/obo/BFO_0000062
@@ -3408,6 +3429,8 @@ slots:
     range: D3fendEntry
     multivalued: true
     inlined: false
+    close_mappings:
+    - BFO:0000063
     annotations:
       owl_property: object
       is_defined_by: http://purl.obolibrary.org/obo/BFO_0000063

@@ -37,9 +37,12 @@ comments:
     unchanged, scripts/d3fend_to_linkml.py writes the catalogue and the slots from it, and
     scripts/check_upstream_release.py reports when it moves.
 prefixes:
+  BFO: http://purl.obolibrary.org/obo/BFO_
+  COMMONCOREONTOLOGY: http://www.ontologyrepository.com/CommonCoreOntologies/
   IAO: http://purl.obolibrary.org/obo/IAO_
   attack: https://w3id.org/lmodel/attack/
   capec: https://w3id.org/lmodel/capec/
+  cco: https://www.commoncoreontologies.org/
   cwe: https://w3id.org/lmodel/cwe/
   d3f: http://d3fend.mitre.org/ontologies/d3fend.owl#
   d3fend: https://w3id.org/lmodel/d3fend/

@@ -54,6 +54,14 @@
   "license": "Apache-2.0",
   "prefixes": [
     {
+      "prefix_prefix": "BFO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/BFO_"
+    },
+    {
+      "prefix_prefix": "COMMONCOREONTOLOGY",
+      "prefix_reference": "http://www.ontologyrepository.com/CommonCoreOntologies/"
+    },
+    {
       "prefix_prefix": "IAO",
       "prefix_reference": "http://purl.obolibrary.org/obo/IAO_"
     },
@@ -64,6 +72,10 @@
     {
       "prefix_prefix": "capec",
       "prefix_reference": "https://w3id.org/lmodel/capec/"
+    },
+    {
+      "prefix_prefix": "cco",
+      "prefix_reference": "https://www.commoncoreontologies.org/"
     },
     {
       "prefix_prefix": "cwe",
@@ -1338,6 +1350,9 @@
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#caused-by"
       ],
+      "close_mappings": [
+        "https://www.commoncoreontologies.org/ont00001819"
+      ],
       "is_a": "associated_with",
       "domain": "D3fendEntry",
       "slot_uri": "http://d3fend.mitre.org/ontologies/d3fend.owl#caused-by",
@@ -1370,6 +1385,9 @@
       "from_schema": "https://w3id.org/lmodel/d3fend/d3fend_entries",
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#causes"
+      ],
+      "close_mappings": [
+        "https://www.commoncoreontologies.org/ont00001803"
       ],
       "is_a": "associated_with",
       "domain": "D3fendEntry",
@@ -2908,6 +2926,9 @@
       ],
       "description": "x display-order y: An object x should be displayed in ordinal position y when placed or listed in a d3fend display with other objects of its kind.",
       "title": "display-order",
+      "comments": [
+        "The ontology declares no range, and every value of this edition is an integer."
+      ],
       "from_schema": "https://w3id.org/lmodel/d3fend/d3fend_entries",
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#display-order"
@@ -2933,6 +2954,9 @@
       ],
       "description": "D3FEND's property \"display-priority\", which the ontology does not define.",
       "title": "display-priority",
+      "comments": [
+        "The ontology declares no range, and every value of this edition is an integer."
+      ],
       "from_schema": "https://w3id.org/lmodel/d3fend/d3fend_entries",
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#display-priority"
@@ -4119,6 +4143,9 @@
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#has-participant"
       ],
+      "close_mappings": [
+        "http://purl.obolibrary.org/obo/BFO_0000057"
+      ],
       "is_a": "associated_with",
       "domain": "D3fendEntry",
       "slot_uri": "http://d3fend.mitre.org/ontologies/d3fend.owl#has-participant",
@@ -4208,6 +4235,9 @@
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient"
       ],
+      "close_mappings": [
+        "http://www.ontologyrepository.com/CommonCoreOntologies/has_recipient"
+      ],
       "is_a": "associated_with",
       "slot_uri": "http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient",
       "owner": "D3fendEntry",
@@ -4241,6 +4271,9 @@
       ],
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender"
+      ],
+      "close_mappings": [
+        "http://www.ontologyrepository.com/CommonCoreOntologies/has_sender"
       ],
       "is_a": "associated_with",
       "slot_uri": "http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender",
@@ -7082,6 +7115,9 @@
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#participates-in"
       ],
+      "close_mappings": [
+        "http://purl.obolibrary.org/obo/BFO_0000056"
+      ],
       "is_a": "associated_with",
       "domain": "D3fendEntry",
       "slot_uri": "http://d3fend.mitre.org/ontologies/d3fend.owl#participates-in",
@@ -7171,6 +7207,9 @@
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#preceded-by"
       ],
+      "close_mappings": [
+        "http://purl.obolibrary.org/obo/BFO_0000062"
+      ],
       "is_a": "associated_with",
       "domain": "D3fendEntry",
       "slot_uri": "http://d3fend.mitre.org/ontologies/d3fend.owl#preceded-by",
@@ -7203,6 +7242,9 @@
       "from_schema": "https://w3id.org/lmodel/d3fend/d3fend_entries",
       "mappings": [
         "http://d3fend.mitre.org/ontologies/d3fend.owl#precedes"
+      ],
+      "close_mappings": [
+        "http://purl.obolibrary.org/obo/BFO_0000063"
       ],
       "is_a": "associated_with",
       "domain": "D3fendEntry",
@@ -16268,8 +16310,8 @@
   ],
   "metamodel_version": "1.12.0",
   "source_file": "d3fend.yaml",
-  "source_file_date": "2026-11-05T01:40:37",
-  "source_file_size": 3851,
+  "source_file_date": "2026-11-05T01:42:55",
+  "source_file_size": 4017,
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/d3fend.context.jsonld",

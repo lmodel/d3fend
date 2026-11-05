@@ -1,12 +1,18 @@
 {
    "@context": {
       "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "BFO": {
+         "@id": "http://purl.obolibrary.org/obo/BFO_",
+         "@prefix": true
+      },
+      "COMMONCOREONTOLOGY": "http://www.ontologyrepository.com/CommonCoreOntologies/",
       "IAO": {
          "@id": "http://purl.obolibrary.org/obo/IAO_",
          "@prefix": true
       },
       "attack": "https://w3id.org/lmodel/attack/",
       "capec": "https://w3id.org/lmodel/capec/",
+      "cco": "https://www.commoncoreontologies.org/",
       "cwe": "https://w3id.org/lmodel/cwe/",
       "d3f": "http://d3fend.mitre.org/ontologies/d3fend.owl#",
       "d3fend": "https://w3id.org/lmodel/d3fend/",

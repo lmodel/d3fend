@@ -13,7 +13,7 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 - **The relations that make D3FEND what it is.** Each of the 1,939 class restrictions that names a term is a value of its record's slot, where the old schema held none of them.
 - **A test that walks the Turtle in both directions**, a test that the whole catalogue validates and gives back the Turtle's triples through JSON-LD, and `tests/d3fend_rules.py` for what JSON Schema cannot state.
 - **A weekly upstream watch** that reports a new edition, a changed file, a changed licence, or changed Terms of Use.
-- **Mappings to lmodel/attack, lmodel/stix, lmodel/cwe, lmodel/capec and lmodel/nist-sp-800-53**, each held by a test to a released copy.
+- **Mappings to lmodel/attack, lmodel/stix, lmodel/cwe, lmodel/capec and lmodel/nist-sp-800-53**, each held by a test to a released copy, and to the ten SKOS, IAO, BFO and Common Core Ontologies properties the ontology itself names as `rdfs:isDefinedBy`.
 - **`.lokf/d3fend.yaml`, the schema's `lokf adapt` copy, rooted on `D3fendEntry` and `D3fendCatalog`.** The knowledge release attaches it as `schema-<tag>-d3fend.yaml`.
 - **The repository's Knowledge Trust Ladder (KTL) knowledge bundle and its sidecar automation**, from the KTL v0.61.0 templates with the lokf floor at 0.9.0, and a knowledge website that replaces the mkdocs site.
 

@@ -62,9 +62,12 @@ metamodel_version = "1.12.0"
 version = "1.6.0"
 
 # Namespaces
+BFO = CurieNamespace('BFO', 'http://purl.obolibrary.org/obo/BFO_')
+COMMONCOREONTOLOGY = CurieNamespace('COMMONCOREONTOLOGY', 'http://www.ontologyrepository.com/CommonCoreOntologies/')
 IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
 ATTACK = CurieNamespace('attack', 'https://w3id.org/lmodel/attack/')
 CAPEC = CurieNamespace('capec', 'https://w3id.org/lmodel/capec/')
+CCO = CurieNamespace('cco', 'https://www.commoncoreontologies.org/')
 CWE = CurieNamespace('cwe', 'https://w3id.org/lmodel/cwe/')
 D3F = CurieNamespace('d3f', 'http://d3fend.mitre.org/ontologies/d3fend.owl#')
 D3FEND = CurieNamespace('d3fend', 'https://w3id.org/lmodel/d3fend/')

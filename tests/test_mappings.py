@@ -2,7 +2,7 @@
 
 Each mapping names its target by a CURIE whose prefix the schema binds. A target in an
 lmodel neighbour's namespace is held to that neighbour's released copy under
-tests/neighbours/. The two others are the terms the ontology itself names as rdfs:isDefinedBy.
+tests/neighbours/. The others are the terms the ontology itself names as rdfs:isDefinedBy.
 The schema is the one home for mappings: no SSSOM file sits beside it.
 """
 
@@ -28,10 +28,19 @@ MAPPING_KEYS = (
     "mappings",
 )
 
-# The targets outside the lmodel family, by the property that names them.
+# The targets outside the lmodel family, by the property that names each as its
+# rdfs:isDefinedBy.
 STATED_BY_THE_ONTOLOGY = {
     "skos:related": C.D3F.related,
     "IAO:0000115": C.D3F.definition,
+    "BFO:0000057": C.D3F["has-participant"],
+    "BFO:0000056": C.D3F["participates-in"],
+    "BFO:0000062": C.D3F["preceded-by"],
+    "BFO:0000063": C.D3F.precedes,
+    "cco:ont00001819": C.D3F["caused-by"],
+    "cco:ont00001803": C.D3F.causes,
+    "COMMONCOREONTOLOGY:has_recipient": C.D3F["has-recipient"],
+    "COMMONCOREONTOLOGY:has_sender": C.D3F["has-sender"],
 }
 
 
@@ -102,7 +111,7 @@ def expand(module, curie):
 
 def test_mappings_exist():
     """The parametrized tests below pass on an empty list, so this one does not."""
-    assert len(TARGETS) >= 12, len(TARGETS)
+    assert len(TARGETS) >= 20, len(TARGETS)
 
 
 @pytest.mark.parametrize(("module", "curie"), TARGETS)
