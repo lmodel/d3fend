@@ -3,7 +3,7 @@ type: Dataset
 id: https://w3id.org/lmodel/d3fend/knowledge/datasets/catalogue
 genre: reference
 title: The catalogue
-description: "`src/d3fend/data/d3fend-1.6.0.yaml`: every class and individual of D3FEND 1.6.0, 5,419 in all, as one record each with its IRI as `id`, its kind as `type`, and its text and relations as slots."
+description: "`src/d3fend/data/d3fend-1.6.0.yaml`: every class and individual of D3FEND 1.6.0, 5,419 in all, as one record each with its IRI as `id`, its kind as `type`, and its text and relations as slots, without the 340 abstracts of cited sources."
 resource: src/d3fend/data/d3fend-1.6.0.yaml
 derivedFrom:
   - https://w3id.org/lmodel/d3fend/knowledge/datasets/upstream-copy
@@ -22,7 +22,7 @@ sources:
   - resource: src/d3fend/data/d3fend-1.6.0.yaml
 generated:
   by: process:ktl-librarian
-  at: "2026-11-04T22:48:04Z"
+  at: "2026-11-05T01:50:09Z"
 status: draft
 ---
 
@@ -32,7 +32,7 @@ The converter writes the file from the Turtle, and its header reproduces MITRE's
 
 All 5,419 records pass the committed JSON Schema, `linkml-validate` and the rules on a whole catalogue, and load into the generated models.[^index.md]
 
-A relation's values come from the Turtle's direct triples and its class restrictions. Through the JSON-LD context the catalogue gives back every triple the Turtle states about a term.[^test_catalogue.py]
+A relation's values come from the Turtle's direct triples and its class restrictions. Through the JSON-LD context the catalogue gives back every triple the Turtle states about a term, but for the 340 abstracts of cited sources, which it leaves out.[^test_catalogue.py]
 
 [^test_upstream.py]: tests/test_upstream.py, test_each_file_that_copies_the_text_carries_the_designation
 [^index.md]: docs/index.md, What was checked
