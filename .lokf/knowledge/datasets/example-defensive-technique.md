@@ -21,13 +21,13 @@ sources:
     title: test_a_record_holds_its_relations
 generated:
   by: process:ktl-librarian
-  at: "2026-11-04T22:48:04Z"
+  at: "2026-11-06T21:18:57Z"
 status: draft
 ---
 
 # File Analysis
 
-This concept shows how a host writes a D3FEND term in its bundle: its `type` is a kind, and its relations name D3FEND's terms by their CURIEs. `lokf validate` checks it against `.lokf/d3fend.yaml`.[^readme.md]
+This concept shows how a host writes a D3FEND term in its bundle: its `type` is a kind, and its relations name D3FEND's terms by their CURIEs. `lokf validate` checks it against `.lokf/schema/d3fend.yaml`.[^readme.md]
 
 Its keys are the ones the record `d3f:FileAnalysis` holds in the catalogue.[^test_catalogue.py]
 

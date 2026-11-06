@@ -39,7 +39,7 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 
 ## Before opening a pull request
 
-- **Edit the source, then regenerate.** Edit `scripts/d3fend_to_linkml.py` or the two hand-written schema files, run `just gen-schema`, `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `src/d3fend/schema/d3fend_entries.yaml`, `src/d3fend/data/`, `project/`, `src/d3fend/datamodel/`, `docs/schema/` and `.lokf/d3fend.yaml` are generated.
+- **Edit the source, then regenerate.** Edit `scripts/d3fend_to_linkml.py` or the two hand-written schema files, run `just gen-schema`, `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `src/d3fend/schema/d3fend_entries.yaml`, `src/d3fend/data/`, `project/`, `src/d3fend/datamodel/`, `docs/schema/` and `.lokf/schema/d3fend.yaml` are generated.
 - **Keep the ontology's IRIs.** A slot carries its property's IRI as `slot_uri`, and a record its term's IRI as `id`. `tests/test_coverage.py` walks the Turtle in `upstream/` and fails on anything it does not render, unless it is listed there with its reason.
 - **State only what the upstream states.** No bound or rule of your own. What JSON Schema cannot check is in `tests/d3fend_rules.py`, and what the data merely shows stays in `tests/test_catalogue.py`.
 - **A mapping is read at its source.** `tests/test_mappings.py` holds each one to a neighbour copy or to what the ontology itself states. A term with no sure match stays unmapped.

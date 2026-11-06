@@ -51,7 +51,7 @@ exclusions:
     reason: The sidecar's link to the bundle.
   - resource: .github/PULL_REQUEST_TEMPLATE
     reason: The sidecar sync's pull request template.
-  - resource: .lokf/lokf.yaml
+  - resource: .lokf/schema/lokf.yaml
     reason: LOKF's schema, pinned by the sidecar.
   - resource: .lokf/scripts
     reason: The sidecar's scripts, which the weekly sync replaces.
@@ -77,7 +77,7 @@ sources:
   - resource: src/d3fend/data
   - resource: src/d3fend/datamodel
   - resource: project.justfile
-  - resource: .lokf/d3fend.yaml
+  - resource: .lokf/schema/d3fend.yaml
   - resource: .lokf/justfile
   - resource: .lokf/pyproject.toml
   - resource: NOTICE
@@ -103,7 +103,7 @@ sources:
   - resource: pyproject.toml
 generated:
   by: process:ktl-librarian
-  at: "2026-11-04T22:48:04Z"
+  at: "2026-11-06T21:18:57Z"
 status: draft
 ---
 

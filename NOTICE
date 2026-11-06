@@ -21,7 +21,7 @@ src/d3fend/data/d3fend-1.6.0.yaml holds the same terms and text as records, othe
 than the abstracts named below. src/d3fend/schema/d3fend_entries.yaml holds each
 property's label and definition as a slot's title and description, word for
 word, and so does what is generated from it: project/, src/d3fend/datamodel/,
-docs/schema/, .lokf/d3fend.yaml and the schema asset of a release. The schema's
+docs/schema/, .lokf/schema/d3fend.yaml and the schema asset of a release. The schema's
 header carries the designation and the licence into those files that keep it.
 tests/data/ holds short excerpts of records under the same terms.
 upstream/TERMS.txt holds the Terms of Use, https://d3fend.mitre.org/tou/, which
