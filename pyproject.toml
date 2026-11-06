@@ -70,7 +70,7 @@ skip = [
   "src/d3fend/schema/d3fend_entries.yaml",
   "tests/data/*",
   "tests/neighbours/*",
-  ".lokf/d3fend.yaml",
+  ".lokf/schema/d3fend.yaml",
   ".lokf/scripts/*",
   "website/package-lock.json",
 ]
@@ -96,7 +96,7 @@ extend-exclude = [
   "src/d3fend/schema/d3fend_entries.yaml",
   "tests/data/*",
   "tests/neighbours/*",
-  ".lokf/d3fend.yaml",
+  ".lokf/schema/d3fend.yaml",
   ".lokf/scripts/*",
   "website/package-lock.json",
 ]

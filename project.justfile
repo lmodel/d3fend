@@ -11,8 +11,8 @@ gen-schema:
 
 # ============ Knowledge bundle: the adapted domain schema ============
 
-# `.lokf/d3fend.yaml` is the copy `lokf adapt` writes from the schema so that it can sit
-# beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are the two
+# `.lokf/schema/d3fend.yaml` is the copy `lokf adapt` writes from the schema so that it can sit
+# beside `.lokf/schema/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are the two
 # classes that carry the schema's identifiers: D3fendEntry, the abstract base of every kind
 # of entry, and D3fendCatalog. A concept names one of the kinds as its `type`, and LOKF's
 # `id` stands for the term's IRI, which adapt drops. rdfs:isDefinedBy keeps its own key,
@@ -22,12 +22,12 @@ gen-schema:
 lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
 lokf_adapt_roots := "--root D3fendEntry --root D3fendCatalog --prefix d3fend --keep is_defined_by"
 
-# Rewrite .lokf/d3fend.yaml from the schema (run after every schema change)
+# Rewrite .lokf/schema/d3fend.yaml from the schema (run after every schema change)
 [group('knowledge bundle')]
 lokf-adapt:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/d3fend.yaml
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/d3fend.yaml
 
-# Fail when .lokf/d3fend.yaml is stale against the schema or .lokf/lokf.yaml
+# Fail when .lokf/schema/d3fend.yaml is stale against the schema or .lokf/schema/lokf.yaml
 [group('knowledge bundle')]
 lokf-adapt-check:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/d3fend.yaml --check
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/d3fend.yaml --check

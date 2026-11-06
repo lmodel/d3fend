@@ -47,7 +47,7 @@ Run `just` to list the project's [just](https://github.com/casey/just/) recipes.
 
 ## Knowledge Trust Ladder (KTL)
 
-`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/d3fend.yaml`, is the copy `just lokf-adapt` writes from `src/d3fend/schema/d3fend.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-d3fend.yaml`, on the terms [CONTRIBUTING.md](CONTRIBUTING.md#releasing-maintainers) gives.
+`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/schema/d3fend.yaml`, is the copy `just lokf-adapt` writes from `src/d3fend/schema/d3fend.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-d3fend.yaml`, on the terms [CONTRIBUTING.md](CONTRIBUTING.md#releasing-maintainers) gives.
 
 The copy roots `D3fendEntry` and `D3fendCatalog` on `Concept`, so a concept may be an entry of any kind. In Obsidian, add the kinds to the *Known LOKF types* setting of the KTL Registrar and KTL Curator plugins:
 
