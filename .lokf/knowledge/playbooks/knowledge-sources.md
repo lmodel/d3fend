@@ -86,7 +86,7 @@ sources:
   - resource: .github/scripts
   - resource: .github/workflows
   - resource: .github/dependabot.yml
-  - resource: .github/release
+  - resource: .release
   - resource: justfile
   - resource: .linkml/generators.yaml
   - resource: .linkmllint.yaml
@@ -103,7 +103,7 @@ sources:
   - resource: pyproject.toml
 generated:
   by: process:ktl-librarian
-  at: "2026-11-15T03:04:48Z"
+  at: "2026-11-15T20:56:32Z"
 status: draft
 ---
 
