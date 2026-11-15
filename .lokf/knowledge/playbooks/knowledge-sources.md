@@ -103,7 +103,7 @@ sources:
   - resource: pyproject.toml
 generated:
   by: process:ktl-librarian
-  at: "2026-11-06T21:18:57Z"
+  at: "2026-11-15T03:04:48Z"
 status: draft
 ---
 
@@ -120,5 +120,5 @@ The bundle derives its concepts from the paths under `sources`, each re-read whe
 | `scripts/` | the converter and the watch, as named in those concepts | their tests |
 | `.github/workflows/` | one service concept per workflow | read the header comment |
 | `README.md`, `docs/`, `NOTICE`, `SECURITY.md`, `CONTRIBUTING.md`, `AI_COVENANT.md`, `CHANGELOG.md` | the policies, the playbooks and the explanations | read the section each concept cites |
-| `website/` | the documentation site | `npm run build` in `website/` |
+| `website/` | the documentation site | `bash website/scripts/build.sh` |
 | `https://d3fend.mitre.org/` | the references | `python3 scripts/check_upstream_release.py` |

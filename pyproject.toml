@@ -13,7 +13,7 @@ authors = [
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dynamic = ["version"]
 
 dependencies = [
@@ -50,7 +50,7 @@ exclude = [
     "src/d3fend/_version.py",
 ]
 # Set oldest supported Python version
-target-version = "py310"
+target-version = "py311"
 
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]
@@ -72,11 +72,11 @@ skip = [
   "tests/neighbours/*",
   ".lokf/schema/d3fend.yaml",
   ".lokf/scripts/*",
-  "website/package-lock.json",
+  "website/uv.lock",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
-ignore-words-list = "linke"
+ignore-words-list = "linke,intoto"
 quiet-level = 3
 
 # Ref.: https://github.com/crate-ci/typos (spell checker)
@@ -98,5 +98,5 @@ extend-exclude = [
   "tests/neighbours/*",
   ".lokf/schema/d3fend.yaml",
   ".lokf/scripts/*",
-  "website/package-lock.json",
+  "website/uv.lock",
 ]

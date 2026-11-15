@@ -64,7 +64,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for d3fend. Every Markdo
 
 # Services
 
-* [Documentation site](services/documentation-site.md) - The knowledge website in `website/`, an Astro Starlight site that the Knowledge website workflow publishes to GitHub Pages at `https://lmodel.github.io/d3fend`, built from the README, `docs/`, the schema's pages and the bundle. It replaces the mkdocs site.
+* [Documentation site](services/documentation-site.md) - The knowledge website in `website/`, a Hugo site that the Knowledge website workflow publishes to GitHub Pages at `https://lmodel.github.io/d3fend`, built from the README, `docs/`, the schema's pages and the bundle. It replaces the mkdocs site.
 
 # Playbooks
 
@@ -76,7 +76,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for d3fend. Every Markdo
 
 # Workflows
 
-* [Build and test (main.yaml)](workflows/main.md) - The Build and test workflow: on every pull request and push to `main`, it runs `just test` on Python 3.10 to 3.14, and lints the schema and checks the adapt copy on 3.13.
+* [Build and test (main.yaml)](workflows/main.md) - The Build and test workflow: on every pull request and push to `main`, it runs `just test` on Python 3.11 to 3.14, and lints the schema and checks the adapt copy on 3.13.
 * [Lint and docs (lint-and-docs.yaml)](workflows/lint-and-docs.md) - The static checks on pull requests, on `main` and every Monday: ShellCheck, actionlint, the word budgets of CONTRIBUTING.md and SECURITY.md, markdownlint, lychee and codespell.
 * [Semantic release (semantic-release.yml)](workflows/semantic-release.md) - The workflow that computes the next version from Conventional Commits on `main`, promotes the changelog, tags and publishes a GitHub Release, and dispatches the knowledge release once `KNOWLEDGE_RELEASE_ENABLED` is `true`.
 * [Upstream watch (upstream-watch.yaml)](workflows/upstream-watch.md) - The weekly check that `scripts/check_upstream_release.py` runs: another edition of D3FEND, a changed file, a changed licence or changed Terms of Use fails the run and opens or updates an issue.

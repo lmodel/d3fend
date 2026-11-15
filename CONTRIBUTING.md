@@ -19,7 +19,7 @@ A LinkML schema of MITRE D3FEND 1.6.0, the knowledge graph of countermeasures: e
 
 ## Development setup
 
-You need Python 3.10+, [uv](https://docs.astral.sh/uv/) and [just](https://github.com/casey/just).
+You need Python 3.11+, [uv](https://docs.astral.sh/uv/) and [just](https://github.com/casey/just).
 
 ```bash
 git clone https://github.com/lmodel/d3fend.git
