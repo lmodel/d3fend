@@ -1,6 +1,6 @@
 #!/usr/bin/env -S uv run --quiet --script
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.11"
 # dependencies = ["rdflib>=7", "pyyaml>=6"]
 # ///
 """Turn MITRE's D3FEND Turtle file into this project's schema module and catalogue.
